@@ -8,12 +8,15 @@ class HumanA
 {
 private:
     std::string name;
-    Weapon w;
+    Weapon& w;
 
 public:
-    // HumanA() {};
-    HumanA(std::string str, Weapon weapon)
+    HumanA(std::string str, Weapon& weapon)
         : name(str), w(weapon) {};
+    ~HumanA()
+    {
+        std::cout << "Human A class destroyed" << std::endl;
+    }
     void attack();
 };
 

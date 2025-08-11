@@ -11,10 +11,13 @@ private:
     Weapon *w;
 
 public:
-    // HumanB() {};
     HumanB(std::string str)
         : name(str), w(NULL) {};
-    void setWeapon(Weapon weapon);
+    ~HumanB()
+    {
+        std::cout << "Human B class destroyed" << std::endl;
+    }
+    void setWeapon(Weapon& weapon);
     void attack();
 };
 
