@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 19:22:11 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/12 19:35:32 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:41:24 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ void Harl::error(void)
               << std::endl;
 }
 
-void complain(std::string level)
+void Harl::complain(std::string level)
 {
+    std::string list_level[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl::*Harlptr[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+    for(int i = 0; i < 4; ++i)
+    {
+        if(level == list_level[i])
+        {
+            (this->*Harlptr[i])();
+            return ;
+        }
+    }
 }
