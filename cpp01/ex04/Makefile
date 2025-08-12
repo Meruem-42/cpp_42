@@ -4,9 +4,7 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 NAME = sed
 
-SRC =	src/Weapon.cpp \
-		src/HumanA.cpp \
-		src/HumanB.cpp \
+SRC =	src/sed.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
