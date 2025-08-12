@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sed.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:08:06 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/12 19:09:35 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:40:29 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void ft_sed(const char *file_name, std::string to_find, std::string to_replace)
     fd_in.open(file_name, std::ios::in);
     if (!(fd_in.is_open()))
     {
-        std::cout << "can't open the file" << std::endl;
+        std::cerr << "can't open the file" << std::endl;
         return;
     }
 
     fd_out.open("text.replace", std::ios::out);
     if (!(fd_out.is_open()))
     {
-        std::cout << "can't open the file" << std::endl;
+        std::cerr << "can't open the file" << std::endl;
+        fd_in.close();
         return;
     }
 
@@ -47,4 +48,6 @@ void ft_sed(const char *file_name, std::string to_find, std::string to_replace)
         if (!(fd_in.eof()))
             fd_out << std::endl;
     }
+    fd_in.close();
+    fd_out.close();
 }
