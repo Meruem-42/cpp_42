@@ -4,7 +4,7 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 NAME = harl
 
-SRC =	src/harl.cpp \
+SRC =	src/Harl.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
