@@ -6,7 +6,7 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:08:06 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/13 20:10:20 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/13 20:23:13 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,24 @@ void ft_sed(const char *file_name, std::string to_find, std::string to_replace)
     std::ofstream fd_out;
     std::string file;
 
-    file = (std::string)file_name;
     fd_in.open(file_name, std::ios::in);
     if (!(fd_in.is_open()))
     {
-        std::cerr << "can't open the file" << std::endl;
+        std::cerr << "can't open the infile" << std::endl;
         return;
     }
+    file = (std::string)file_name;
     file.insert(file.length(), ".replace");
     fd_out.open(file.c_str(), std::ios::out);
     if (!(fd_out.is_open()))
     {
-        std::cerr << "can't open the file" << std::endl;
+        std::cerr << "can't open the outfile" << std::endl;
         fd_in.close();
         return;
     }
 
-    while (!(fd_in.eof()))
+    while (getline(fd_in, buffer))
     {
-        getline(fd_in, buffer);
         for (int i = 0; buffer[i]; ++i)
         {
             i = buffer.find(to_find, i);
