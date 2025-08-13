@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 19:25:48 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/12 19:29:13 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:24:46 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 int main()
 {
-    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-\
-ketchup burger.I really do !"
-              << std::endl;
+	Harl harl;
+
+	std::cout << "DEBUG" << std::endl;
+	harl.complain("DEBUG");
+	std::cout << "INFO" << std::endl;
+	harl.complain("INFO");
+	std::cout << "WARNING" << std::endl;
+	harl.complain("WARNING");
+	std::cout << "ERROR" << std::endl;
+	harl.complain("ERROR");
+	return (0);
 }
