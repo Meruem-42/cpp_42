@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sed.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 18:08:06 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/12 22:40:29 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/13 20:10:20 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ void ft_sed(const char *file_name, std::string to_find, std::string to_replace)
     std::string buffer;
     std::ifstream fd_in;
     std::ofstream fd_out;
+    std::string file;
 
+    file = (std::string)file_name;
     fd_in.open(file_name, std::ios::in);
     if (!(fd_in.is_open()))
     {
         std::cerr << "can't open the file" << std::endl;
         return;
     }
-
-    fd_out.open("text.replace", std::ios::out);
+    file.insert(file.length(), ".replace");
+    fd_out.open(file.c_str(), std::ios::out);
     if (!(fd_out.is_open()))
     {
         std::cerr << "can't open the file" << std::endl;
