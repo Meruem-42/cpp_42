@@ -3,38 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   add_contact.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:08:31 by meruem            #+#    #+#             */
-/*   Updated: 2025/08/10 20:08:33 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/13 18:39:27 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.hpp"
 
-
 void Phonebook::push_all()
 {
-    for(int i = 1; i < 8; ++i)
+    for (int i = 1; i < 8; ++i)
         repertory[i - 1] = repertory[i];
 }
 
 void Contact::fill_data_contact()
 {
     std::cout << "First Name : ";
-    std::cin >> first_name;
+    getline(std::cin, first_name);
     protection_cin();
     std::cout << "Last Name : ";
-    std::cin >> last_name;
+    getline(std::cin, last_name);
     protection_cin();
     std::cout << "Nickname : ";
-    std::cin >> nickname;
+    getline(std::cin, nickname);
     protection_cin();
     std::cout << "Phone Number : ";
-    std::cin >> phone_number;
+    getline(std::cin, phone_number);
     protection_cin();
     std::cout << "Darkest Secret : ";
-    std::cin >> darkest_secret;
+    getline(std::cin, darkest_secret);
     protection_cin();
 }
 

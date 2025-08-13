@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   search.cpp                                         :+:      :+:    :+:   */
+/*   find_contact.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 16:45:49 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/08 18:08:25 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:46:37 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,20 @@ void Phonebook::find_and_display()
         std::cout << "phonebook is empty" << std::endl;
         return;
     }
-    while (1)
+    std::cout << "Choose the index of the contact you want to display :";
+    getline(std::cin, choice);
+    protection_cin();
+    if (choice.length() == 1)
     {
-        if (index_chosen >= 0 && index_chosen <= 7 && index_chosen >= number_of_contact)
-            std::cout << "index can't be found try again" << std::endl;
-        std::cout << "Choose the index of the contact you want to display :";
-        std::cin >> choice;
-        protection_cin();
-        if (choice.length() == 1)
+        if (choice[0] >= '0' && choice[0] <= '7')
         {
-            if (choice[0] >= '0' && choice[0] <= '7')
-            {
-                std::stringstream ss(choice);
-                ss >> index_chosen;
-                if (index_chosen >= number_of_contact)
-                    continue;
-                for (int i = 0; i < index_chosen; ++i)
-                    ;
-                repertory[index_chosen].display_contact();
+            std::stringstream ss(choice);
+            ss >> index_chosen;
+            if (index_chosen >= number_of_contact)
                 return;
-            }
+            for (int i = 0; i < index_chosen; ++i)
+                ;
+            repertory[index_chosen].display_contact();
         }
-        std::cout << "index can't be found try again between 0 and 7" << std::endl;
     }
 }

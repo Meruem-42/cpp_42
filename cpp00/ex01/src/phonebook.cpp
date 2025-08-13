@@ -6,7 +6,7 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:08:47 by meruem            #+#    #+#             */
-/*   Updated: 2025/08/11 13:16:37 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:47:43 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ void initial_prompt()
     std::cout << "Your choice : ";
 }
 
-void detect_command(Phonebook *phone, std::string choice)
+int detect_command(Phonebook *phone, std::string choice)
 {
     if (choice == "ADD")
         (*phone).add_contact();
     else if (choice == "SEARCH")
         (*phone).display_phonebook();
     else if (choice == "EXIT")
-        exit(0);
+        return (1);
+    return (0);
 }
 
 int main()
@@ -40,10 +41,11 @@ int main()
     while (1)
     {
         initial_prompt();
-        std::cin >> choice;
+        getline(std::cin, choice);
         protection_cin();
         std::cout << std::endl;
-        detect_command(&phone, choice);
+        if (detect_command(&phone, choice) == 1)
+            return (0);
         std::cout << std::endl;
     }
     return (0);
