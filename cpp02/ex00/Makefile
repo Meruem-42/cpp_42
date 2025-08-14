@@ -2,9 +2,9 @@ CC = c++
 
 CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
-NAME = harl
+NAME = fixed_number
 
-SRC =	src/Harl.cpp \
+SRC =	src/Fixed.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
