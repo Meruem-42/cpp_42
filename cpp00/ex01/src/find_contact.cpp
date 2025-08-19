@@ -3,30 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   find_contact.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 16:45:49 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/17 18:18:45 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/19 19:25:44 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.hpp"
+#include "../include/global.hpp"
+#include "../include/Phonebook.hpp"
 
-void Contact::display_contact()
+void display_contact(Contact c)
 {
-    std::cout << "First Name : " << first_name << std::endl;
-    std::cout << "Last Name : " << last_name << std::endl;
-    std::cout << "Nickname : " << nickname << std::endl;
-    std::cout << "Phone Number : " << phone_number << std::endl;
-    std::cout << "Darkest Secret : " << darkest_secret << std::endl;
+    std::cout << "First Name : " << c.get_first_name() << std::endl;
+    std::cout << "Last Name : " << c.get_last_name() << std::endl;
+    std::cout << "Nickname : " << c.get_nickname() << std::endl;
+    std::cout << "Phone Number : " << c.get_phone_number() << std::endl;
+    std::cout << "Darkest Secret : " << c.get_darkest_secret() << std::endl;
 }
 
-void Phonebook::find_and_display()
+void find_and_display(Phonebook p)
 {
     std::string choice;
+    Contact *temp = p.get_repertory();
     int index_chosen = -1;
 
-    if (number_of_contact == 0)
+    if (p.get_nbcontact() == 0)
     {
         std::cout << "phonebook is empty" << std::endl;
         return;
@@ -39,11 +41,11 @@ void Phonebook::find_and_display()
         {
             std::stringstream ss(choice);
             ss >> index_chosen;
-            if (index_chosen >= number_of_contact)
+            if (index_chosen >= p.get_nbcontact())
                 return;
             for (int i = 0; i < index_chosen; ++i)
                 ;
-            repertory[index_chosen].display_contact();
+            display_contact(temp[index_chosen]);
         }
     }
 }

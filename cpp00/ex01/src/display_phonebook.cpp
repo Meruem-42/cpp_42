@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.cpp                                        :+:      :+:    :+:   */
+/*   display_phonebook.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 14:44:45 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/08 17:19:11 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/19 19:23:12 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.hpp"
+#include "../include/global.hpp"
+#include "../include/Contact.hpp"
+#include "../include/Phonebook.hpp"
 
 void display_cell(std::string str)
 {
@@ -40,7 +42,7 @@ void display_title()
     std::cout << std::endl;
 }
 
-void Contact::display_line_contact(int index)
+void display_line_contact(int index, Contact c)
 {
     std::stringstream ss;
 
@@ -48,20 +50,23 @@ void Contact::display_line_contact(int index)
     std::string str = ss.str();
     display_cell(str);
     std::cout << "|";
-    display_cell(first_name);
+    display_cell(c.get_first_name());
     std::cout << "|";
-    display_cell(last_name);
+    display_cell(c.get_last_name());
     std::cout << "|";
-    display_cell(nickname);
+    display_cell(c.get_nickname());
     std::cout << std::endl;
 }
 
-void Phonebook::display_phonebook()
+void display_phonebook(Phonebook p)
 {
+    Contact *c_array;
+
+    c_array = p.get_repertory();
     display_title();
-    for (int i = 0; i < number_of_contact; ++i)
-        repertory[i].display_line_contact(i);
+    for (int i = 0; i < p.get_nbcontact(); ++i)
+        display_line_contact(i, c_array[i]);
     std::cout << std::endl;
-    find_and_display();
+    find_and_display(p);
     std::cout << std::endl;
 }
