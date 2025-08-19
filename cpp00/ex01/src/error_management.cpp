@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:08:40 by meruem            #+#    #+#             */
-/*   Updated: 2025/08/17 18:15:23 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/19 19:24:49 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.hpp"
+#include "../include/global.hpp"
 
 int protection_cin()
 {
@@ -21,4 +21,14 @@ int protection_cin()
         return (1);
     }
     return (0);
+}
+
+int is_empty(std::string field)
+{
+    for (int i = 0; field[i]; ++i)
+    {
+        if (field[i] > 32)
+            return (0);
+    }
+    return (1);
 }

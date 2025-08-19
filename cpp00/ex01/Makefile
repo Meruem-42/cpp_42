@@ -4,11 +4,12 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 NAME = phonebook
 
-SRC =	src/phonebook.cpp \
+SRC =	src/Phonebook.cpp \
+		src/Contact.cpp \
 		src/display_phonebook.cpp \
 		src/find_contact.cpp \
 		src/error_management.cpp \
-		src/add_contact.cpp
+		src/main.cpp
 		
 GREEN = \033[32m
 YELLOW = \033[33m
