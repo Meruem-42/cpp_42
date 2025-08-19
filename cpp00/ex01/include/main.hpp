@@ -6,7 +6,7 @@
 #include <string>
 #include <sstream>
 
-void protection_cin();
+int protection_cin();
 
 #include "contact.hpp"
 #include "phonebook.hpp"

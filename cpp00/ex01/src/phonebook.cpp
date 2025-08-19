@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:08:47 by meruem            #+#    #+#             */
-/*   Updated: 2025/08/13 18:47:43 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:18:50 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ int main()
     std::string choice;
     Phonebook phone;
 
-    while (1)
+    while (!(std::cin.eof()))
     {
         initial_prompt();
         getline(std::cin, choice);
-        protection_cin();
         std::cout << std::endl;
         if (detect_command(&phone, choice) == 1)
             return (0);
