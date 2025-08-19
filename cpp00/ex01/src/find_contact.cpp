@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_contact.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 16:45:49 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/13 18:46:37 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:18:45 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void Phonebook::find_and_display()
     }
     std::cout << "Choose the index of the contact you want to display :";
     getline(std::cin, choice);
-    protection_cin();
     if (choice.length() == 1)
     {
         if (choice[0] >= '0' && choice[0] <= '7')
