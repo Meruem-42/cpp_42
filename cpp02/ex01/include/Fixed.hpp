@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 class Fixed
 {
@@ -26,7 +27,7 @@ public:
     Fixed(const float real_value)
     {
         std::cout << "Float constructor called" << std::endl;
-        fixed_number = real_value * 256;
+        fixed_number = roundf(real_value * 256);
     }
 
     Fixed(const Fixed &other)
