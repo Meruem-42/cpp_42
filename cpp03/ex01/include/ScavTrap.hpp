@@ -26,6 +26,8 @@ public:
         return (*this);
     }
 
+    ~ScavTrap(){ std::cout << "ScavTrap Destructor is called" << std::endl;}
+
     void attack(const std::string &target);
 };
 
