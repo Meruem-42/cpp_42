@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:51:33 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/20 20:07:15 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/20 21:52:45 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int main()
     ScavTrap d(a);
 
     a.attack("Michel");
-    b.takeDamage(5);
-    b.beRepaired(5);
-    b.takeDamage(10);
+    b.takeDamage(50);
+    b.beRepaired(50);
+    b.takeDamage(100);
     b.attack("Tom");
-    for (int i = 0; i < 11; ++i)
+    for (int i = 0; i < 51; ++i)
         c.attack("Tom");
     c = b;
     c.beRepaired(12);
