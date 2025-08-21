@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:51:33 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/20 21:52:45 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/21 17:40:49 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ int main()
     c = b;
     c.beRepaired(12);
     d.attack("Tom");
+    d.guardGate();
 }
