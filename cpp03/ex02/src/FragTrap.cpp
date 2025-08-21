@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 15:51:33 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/21 18:31:46 by aherlaud         ###   ########.fr       */
+/*   Created: 2025/08/21 17:55:48 by aherlaud          #+#    #+#             */
+/*   Updated: 2025/08/21 18:22:13 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ClapTrap.hpp"
+#include "../include/FragTrap.hpp"
 
-int main()
+void FragTrap::highFivesGuys(void)
 {
-    ClapTrap a("Tom");
-    ClapTrap b("Michel");
-    ClapTrap c("Lou");
-    ClapTrap d(a);
-
-    a.attack("Michel");
-    b.takeDamage(5);
-    b.beRepaired(5);
-    b.takeDamage(10);
-    b.attack("Tom");
-    // for (int i = 0; i < 11; ++i)
-    //     c.attack("Tom");
-    c = b;
-    c.beRepaired(12);
-    d.attack("Tom");
+    std::cout << "YEAH HIGH FIVES GUYSSS !!!" << std::endl;
 }
