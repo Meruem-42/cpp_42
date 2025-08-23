@@ -22,7 +22,7 @@ public:
     virtual ~Animal() { std::cout << "Animal Destructor is called" << std::endl; };
 
     std::string getType() const;
-    virtual void makeSound();
+    virtual void makeSound() const;
 };
 
 #endif

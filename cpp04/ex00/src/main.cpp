@@ -6,7 +6,7 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:51:33 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/23 16:05:29 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:48:16 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 int main()
 {
-    Animal *meta = new (std::nothrow) Animal();
+    const Animal *meta = new (std::nothrow) Animal();
     if (!meta)
         return (1);
-    Animal *j = new (std::nothrow) Dog();
+    const Animal *j = new (std::nothrow) Dog();
     if (!j)
         return (delete meta, 1);
     Animal *i = new (std::nothrow) Cat();
