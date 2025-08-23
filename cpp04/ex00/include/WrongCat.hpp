@@ -24,7 +24,7 @@ public:
     }
     ~WrongCat() { std::cout << "WrongCat Destructor is called" << std::endl; };
 
-    void makeSound();
+    void makeSound() const;
 };
 
 #endif

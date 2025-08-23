@@ -24,7 +24,7 @@ public:
     }
     ~Dog() { std::cout << "Dog Destructor is called" << std::endl; };
 
-    void makeSound();
+    void makeSound() const;
 };
 
 #endif

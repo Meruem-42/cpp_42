@@ -6,13 +6,13 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 15:03:38 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/23 15:51:01 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/23 16:49:29 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Dog.hpp"
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
     std::cout << "dogs bark" << std::endl;
 }
