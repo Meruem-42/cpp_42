@@ -40,7 +40,7 @@ public:
         return (*this);
     }
 
-    ~ClapTrap() { std::cout << "ClapTrap Destructor is called" << std::endl; }
+    virtual ~ClapTrap() { std::cout << "ClapTrap Destructor is called" << std::endl; }
 
     virtual void attack(const std::string &target);
     void takeDamage(unsigned int amount);
