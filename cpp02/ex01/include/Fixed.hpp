@@ -21,12 +21,16 @@ public:
     Fixed(const int real_value)
     {
         std::cout << "Int constructor called" << std::endl;
+        if (real_value > 2147483647 / 256)
+            std::cout << "Note that the results won't be accurate with the input: " << real_value << std::endl;
         fixed_number = real_value * 256;
     }
 
     Fixed(const float real_value)
     {
         std::cout << "Float constructor called" << std::endl;
+        if (real_value > 2147483647 / 256)
+           std::cout << "Note that the results won't be accurate with the input: " << real_value << std::endl; 
         fixed_number = roundf(real_value * 256);
     }
 
