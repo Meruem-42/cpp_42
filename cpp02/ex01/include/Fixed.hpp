@@ -48,11 +48,6 @@ public:
         return (*this);
     }
 
-    friend std::ostream &operator<<(std::ostream &cout, const Fixed &x)
-    {
-        return (cout << x.toFloat());
-    }
-
     ~Fixed()
     {
         std::cout << "Destructor called" << std::endl;
@@ -63,5 +58,7 @@ public:
     float toFloat(void) const;
     int toInt(void) const;
 };
+
+std::ostream &operator<<(std::ostream &cout, const Fixed &x);
 
 #endif
