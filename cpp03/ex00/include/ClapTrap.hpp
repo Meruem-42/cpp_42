@@ -15,6 +15,7 @@ public:
     ClapTrap(const std::string &n)
         : name(n)
     {
+        std::cout << "Default constructor called" << std::endl;
         hit_points = 10;
         energy_points = 10;
         attack_damage = 0;
@@ -22,11 +23,13 @@ public:
 
     ClapTrap(ClapTrap &other)
     {
+        std::cout << "Copy constructor called" << std::endl;
         *this = other;
     }
 
     ClapTrap &operator=(ClapTrap &other)
     {
+        std::cout << "Copy constructor operator called" << std::endl;
         if (this != &other)
         {
             name = other.name;
