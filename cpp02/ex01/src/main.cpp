@@ -6,7 +6,7 @@
 /*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:33:07 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/24 11:39:19 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/24 11:45:56 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void)
 {
     Fixed a;
-    Fixed const b(8388607.0f);
+    Fixed const b(10);
     Fixed const c(42.42f);
     Fixed const d(b);
     Fixed const e(12243345.545f);

@@ -6,7 +6,7 @@
 /*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:32:47 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/15 15:33:24 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/24 11:45:36 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ float Fixed::toFloat(void) const
 int Fixed::toInt(void) const
 {
     return (fixed_number / 256);
+}
+
+std::ostream &operator<<(std::ostream &cout, const Fixed &x)
+{
+    return (cout << x.toFloat());
 }
