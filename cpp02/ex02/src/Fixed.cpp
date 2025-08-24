@@ -6,7 +6,7 @@
 /*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:32:47 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/15 23:31:13 by meruem           ###   ########.fr       */
+/*   Updated: 2025/08/24 12:12:34 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int Fixed::toInt(void) const
     return (fixed_number / 256);
 }
 
+std::ostream &operator<<(std::ostream &cout, const Fixed &x)
+{
+    return (cout << x.toFloat());
+}
+
 Fixed Fixed::operator+(const Fixed& other) const {
     Fixed res;
     res.setRawBits(this->getRawBits() + other.getRawBits());
@@ -55,7 +60,7 @@ Fixed Fixed::operator*(const Fixed& other) const {
 
 Fixed Fixed::operator/(const Fixed& other) const {
     Fixed res;
-    res.setRawBits(roundf(this->toFloat() / other.toFloat() * 256));
+    res.setRawBits(roundf(this->getRawBits() / other.getRawBits() * 256));
     return (res);
 }
 
@@ -82,7 +87,7 @@ bool Fixed::operator>=(const Fixed& other) const
 
 bool Fixed::operator<=(const Fixed& other) const
 {
-    if (this->getRawBits() >= other.getRawBits())
+    if (this->getRawBits() > other.getRawBits())
         return (false);
     return (true);
 }
