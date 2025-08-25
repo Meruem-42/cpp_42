@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meruem <meruem@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:51:33 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/25 17:39:28 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/25 22:04:29 by meruem           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int main()
 {
-    // const Animal *j = new Dog();
-    // const Animal *i = new Cat();
+    const Dog a;
+    Dog b(a);
     int N = 4;
     const Animal *array[N];
 

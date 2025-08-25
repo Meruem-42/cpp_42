@@ -10,13 +10,13 @@ private:
 
 public:
     Brain() { std::cout << "Brain default constructor" << std::endl; };
-    Brain(Brain &other)
+    Brain(const Brain &other)
     {
         std::cout << "Brain copy constructor" << std::endl;
         for (int i = 0; i < 100; ++i)
             ideas[i] = other.ideas[i];
     };
-    Brain &operator=(Brain &other)
+    Brain &operator=(const Brain &other)
     {
         std::cout << "Brain operator constructor" << std::endl;
         if (this != &other)
