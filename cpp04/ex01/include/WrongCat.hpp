@@ -17,9 +17,9 @@ public:
         : Animal(other) { std::cout << "WrongCat copy constructor" << std::endl; };
     WrongCat &operator=(WrongCat &other)
     {
-        std::cout << "WrongCat operator constructor" << std::endl;
         if (this != &other)
             Animal::operator=(other);
+        std::cout << "WrongCat operator constructor" << std::endl;
         return (*this);
     }
     ~WrongCat() { std::cout << "WrongCat Destructor is called" << std::endl; };
