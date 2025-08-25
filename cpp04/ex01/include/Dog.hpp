@@ -19,11 +19,19 @@ public:
         brain = new Brain();
     };
     Dog(Dog &other)
-        : Animal(other) { std::cout << "Dog copy constructor" << std::endl; };
+        : Animal(other)
+    {
+        std::cout << "Dog copy constructor" << std::endl;
+        brain = new Brain(*(other.brain));
+    };
+
     Dog &operator=(Dog &other)
     {
         if (this != &other)
+        {
             Animal::operator=(other);
+            brain = new Brain(*(other.brain));
+        }
         std::cout << "Dog operator constructor" << std::endl;
         return (*this);
     }

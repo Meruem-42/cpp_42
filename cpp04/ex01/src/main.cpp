@@ -6,7 +6,7 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 15:51:33 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/23 16:47:17 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/08/25 17:39:28 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,26 @@
 
 int main()
 {
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
+    // const Animal *j = new Dog();
+    // const Animal *i = new Cat();
+    int N = 4;
+    const Animal *array[N];
 
-    delete j; // should not create a leak
-    delete i;
+    for (int i = 0; i < N; ++i)
+    {
+        if (i < (N / 2))
+            array[i] = new Dog();
+        else
+            array[i] = new Cat();
+    }
+
+    for (int i = 0; i < N; ++i)
+        array[i]->makeSound();
+
+    for (int i = 0; i < N; ++i)
+        delete array[i];
+
+    // delete j; // should not create a leak
+    // delete i;
     return 0;
 }
