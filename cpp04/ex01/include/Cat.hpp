@@ -18,13 +18,13 @@ public:
         type = "Cat";
         brain = new Brain();
     };
-    Cat(Cat &other)
+    Cat(const Cat &other)
         : Animal(other)
     {
         std::cout << "Cat copy constructor" << std::endl;
         brain = new Brain(*(other.brain));
     };
-    Cat &operator=(Cat &other)
+    Cat &operator=(const Cat &other)
     {
         if (this != &other)
         {
