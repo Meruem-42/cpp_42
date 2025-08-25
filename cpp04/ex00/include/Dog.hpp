@@ -13,9 +13,9 @@ public:
         std::cout << "Dog default constructor" << std::endl;
         type = "Dog";
     };
-    Dog(Dog &other)
+    Dog(const Dog &other)
         : Animal(other) { std::cout << "Dog copy constructor" << std::endl; };
-    Dog &operator=(Dog &other)
+    Dog &operator=(const Dog &other)
     {
         if (this != &other)
             Animal::operator=(other);
