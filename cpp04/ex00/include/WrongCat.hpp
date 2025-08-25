@@ -13,9 +13,9 @@ public:
         std::cout << "WrongCat default constructor" << std::endl;
         type = "WrongCat";
     };
-    WrongCat(WrongCat &other)
+    WrongCat(const WrongCat &other)
         : Animal(other) { std::cout << "WrongCat copy constructor" << std::endl; };
-    WrongCat &operator=(WrongCat &other)
+    WrongCat &operator=(const WrongCat &other)
     {
         if (this != &other)
             Animal::operator=(other);

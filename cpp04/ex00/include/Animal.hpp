@@ -10,9 +10,9 @@ protected:
 
 public:
     Animal() { std::cout << "Animal default constructor" << std::endl; };
-    Animal(Animal &other)
+    Animal(const Animal &other)
         : type(other.type) { std::cout << "Animal copy constructor" << std::endl; };
-    Animal &operator=(Animal &other)
+    Animal &operator=(const Animal &other)
     {
         std::cout << "Animal operator constructor" << std::endl;
         if (this != &other)
