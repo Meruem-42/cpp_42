@@ -22,9 +22,9 @@ public:
         : Animal(other) { std::cout << "Cat copy constructor" << std::endl; };
     Cat &operator=(Cat &other)
     {
-        std::cout << "Cat operator constructor" << std::endl;
         if (this != &other)
             Animal::operator=(other);
+        std::cout << "Cat operator constructor" << std::endl;
         return (*this);
     }
     ~Cat()
