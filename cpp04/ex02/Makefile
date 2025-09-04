@@ -4,8 +4,10 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 NAME = animal_with_brain
 
-SRC =	src/Cat.cpp \
+SRC =	src/Animal.cpp \
+		src/Cat.cpp \
  		src/Dog.cpp \
+ 		src/WrongAnimal.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m

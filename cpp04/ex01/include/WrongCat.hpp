@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class WrongCat : public Animal
+class WrongCat : public WrongAnimal
 {
 public:
     WrongCat()
@@ -14,17 +14,15 @@ public:
         type = "WrongCat";
     };
     WrongCat(const WrongCat &other)
-        : Animal(other) { std::cout << "WrongCat copy constructor" << std::endl; };
+        : WrongAnimal(other) { std::cout << "WrongCat copy constructor" << std::endl; };
     WrongCat &operator=(const WrongCat &other)
     {
         if (this != &other)
-            Animal::operator=(other);
+            WrongAnimal::operator=(other);
         std::cout << "WrongCat operator constructor" << std::endl;
         return (*this);
     }
     ~WrongCat() { std::cout << "WrongCat Destructor is called" << std::endl; };
-
-    void makeSound() const;
 };
 
 #endif

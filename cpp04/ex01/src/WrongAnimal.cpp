@@ -10,9 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/WrongCat.hpp"
+#include "../include/WrongAnimal.hpp"
 
-void WrongCat::makeSound() const
+std::string WrongAnimal::getType() const
 {
-    std::cout << "Wrongcats don't bark either" << std::endl;
+    return ((const std::string)type);
+}
+
+void WrongAnimal::makeSound() const
+{
+    std::cout << "WrongAnimal don't bark either" << std::endl;
 }
