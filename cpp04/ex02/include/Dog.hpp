@@ -29,6 +29,7 @@ public:
         std::cout << "Dog operator constructor" << std::endl;
         if (this != &other)
         {
+            delete brain;
             Animal::operator=(other);
             brain = new Brain(*(other.brain));
         }

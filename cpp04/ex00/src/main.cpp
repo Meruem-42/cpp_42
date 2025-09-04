@@ -27,18 +27,21 @@ int main()
     Animal *i = new (std::nothrow) Cat();
     if (!i)
         return (delete meta, delete j, 1);
-    WrongAnimal *l = new (std::nothrow) WrongCat();
+    WrongCat *l = new (std::nothrow) WrongCat();
     if (!l)
         return (delete meta, delete j, delete l, 1);
-    
+    WrongAnimal y((WrongCat()));
+
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     std::cout << l->getType() << " " << std::endl;
     std::cout << meta->getType() << " " << std::endl;
+    std::cout << y.getType() << " " << std::endl;
     i->makeSound(); // will output the cat sound!
     j->makeSound();
     l->makeSound();
     meta->makeSound();
+    y.makeSound();
 
     delete meta;
     delete j;
