@@ -19,8 +19,11 @@ int main()
 {
     const Dog a;
     Dog b(a);
+    Cat *cat = new Cat();
     int N = 4;
     const Animal *array[N];
+    Dog c;
+    c = a;
 
     for (int i = 0; i < N; ++i)
     {
@@ -36,7 +39,6 @@ int main()
     for (int i = 0; i < N; ++i)
         delete array[i];
 
-    // delete j; // should not create a leak
-    // delete i;
+    delete cat;
     return 0;
 }

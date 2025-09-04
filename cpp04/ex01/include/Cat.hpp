@@ -28,6 +28,7 @@ public:
     {
         if (this != &other)
         {
+            delete brain;
             Animal::operator=(other);
             brain = new Brain(*(other.brain));
         }

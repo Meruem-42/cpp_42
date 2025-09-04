@@ -14,6 +14,7 @@
 #include "../include/Cat.hpp"
 #include "../include/Dog.hpp"
 #include "../include/WrongCat.hpp"
+#include "../include/WrongAnimal.hpp"
 
 int main()
 {
@@ -26,10 +27,10 @@ int main()
     Animal *i = new (std::nothrow) Cat();
     if (!i)
         return (delete meta, delete j, 1);
-    Animal *l = new (std::nothrow) WrongCat();
+    WrongAnimal *l = new (std::nothrow) WrongCat();
     if (!l)
         return (delete meta, delete j, delete l, 1);
-
+    
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     std::cout << l->getType() << " " << std::endl;

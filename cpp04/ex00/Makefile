@@ -7,7 +7,7 @@ NAME = animal
 SRC =	src/Animal.cpp \
 		src/Cat.cpp \
  		src/Dog.cpp \
- 		src/WrongCat.cpp \
+ 		src/WrongAnimal.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
