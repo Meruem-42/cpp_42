@@ -27,6 +27,9 @@ public:
         return (*this);
     }
     ~Brain() { std::cout << "Brain Destructor is called" << std::endl; };
+
+    std::string *get_ideas();
+    void set_idea(int idea_num, std::string idea);
 };
 
 #endif

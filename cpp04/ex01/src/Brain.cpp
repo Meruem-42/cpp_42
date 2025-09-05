@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 15:03:21 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/08/23 16:52:32 by aherlaud         ###   ########.fr       */
+/*   Created: 2025/09/05 14:12:01 by aherlaud          #+#    #+#             */
+/*   Updated: 2025/09/05 14:12:10 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Cat.hpp"
+#include "../include/Brain.hpp"
 
-void Cat::makeSound() const
+std::string *Brain::get_ideas()
 {
-    std::cout << "cats don't bark" << std::endl;
+    return (ideas);
 }
-
-Brain *Cat::get_brain()
+void Brain::set_idea(int idea_num, std::string idea)
 {
-    return (brain);
+    if (idea_num >= 0 && idea_num < 100)
+        ideas[idea_num] = idea;
 }
