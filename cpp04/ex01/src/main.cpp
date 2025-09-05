@@ -14,16 +14,24 @@
 #include "../include/Cat.hpp"
 #include "../include/Dog.hpp"
 #include "../include/WrongCat.hpp"
+#include "../include/Brain.hpp"
 
 int main()
 {
-    const Dog a;
-    Dog b(a);
-    Cat *cat = new Cat();
+    // Dog a;
+    // Dog b(a);
+    // Cat *cat = new Cat();
     int N = 4;
     const Animal *array[N];
-    Dog c;
-    c = a;
+    // Dog c;
+    // c = a;
+    // Brain * other = a.get_brain();
+    // other->set_idea(0, "lala");
+    // other->set_idea(1, "lolo");
+
+    // std::string *ideas = other->get_ideas();
+    // for(int i = 0; ideas[i] != ""; ++i)
+    //     std::cout << ideas[i] << std::endl;
 
     for (int i = 0; i < N; ++i)
     {
@@ -39,6 +47,6 @@ int main()
     for (int i = 0; i < N; ++i)
         delete array[i];
 
-    delete cat;
+    // delete cat;
     return 0;
 }

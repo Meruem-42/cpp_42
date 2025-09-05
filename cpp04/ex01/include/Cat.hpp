@@ -42,6 +42,7 @@ public:
     };
 
     void makeSound() const;
+    Brain *get_brain();
 };
 
 #endif
