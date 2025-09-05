@@ -19,7 +19,6 @@ int main()
     // const Animal yo;
     const Animal *j = new Dog();
     const Animal *i = new Cat();
-    const Cat y((Cat())); 
 
     j->makeSound();
     i->makeSound();
