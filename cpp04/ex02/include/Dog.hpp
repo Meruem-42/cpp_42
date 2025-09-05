@@ -20,19 +20,20 @@ public:
     };
     Dog(const Dog &other)
         : Animal(other)
-    { 
+    {
         std::cout << "Dog copy constructor" << std::endl;
         brain = new Brain(*(other.brain));
     };
+
     Dog &operator=(const Dog &other)
     {
-        std::cout << "Dog operator constructor" << std::endl;
         if (this != &other)
         {
             delete brain;
             Animal::operator=(other);
             brain = new Brain(*(other.brain));
         }
+        std::cout << "Dog operator constructor" << std::endl;
         return (*this);
     }
     ~Dog()
@@ -41,7 +42,8 @@ public:
         std::cout << "Dog Destructor is called" << std::endl;
     };
 
-    void makeSound() const ;
+    void makeSound() const;
+    Brain *get_brain();    
 };
 
 #endif

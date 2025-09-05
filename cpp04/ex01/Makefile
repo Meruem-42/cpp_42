@@ -1,4 +1,4 @@
-CC = c++
+CXX = c++
 
 CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
@@ -21,10 +21,10 @@ OBJ = $(SRC:src/%.c=$(OBJ_DIR)%.o)
 
 $(OBJ_DIR)%.o : src/%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CXX) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $^
+	@$(CXX) $(CFLAGS) -o $@ $^
 	@echo "$(GREEN)Compilation successful ! ✅ $(RESET)"
 
 all : $(NAME)

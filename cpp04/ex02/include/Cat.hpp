@@ -20,19 +20,19 @@ public:
     };
     Cat(const Cat &other)
         : Animal(other)
-    { 
+    {
         std::cout << "Cat copy constructor" << std::endl;
         brain = new Brain(*(other.brain));
     };
     Cat &operator=(const Cat &other)
     {
-        std::cout << "Cat operator constructor" << std::endl;
         if (this != &other)
         {
             delete brain;
             Animal::operator=(other);
             brain = new Brain(*(other.brain));
         }
+        std::cout << "Cat operator constructor" << std::endl;
         return (*this);
     }
     ~Cat()
@@ -41,7 +41,8 @@ public:
         std::cout << "Cat Destructor is called" << std::endl;
     };
 
-    void makeSound() const ;
+    void makeSound() const;
+    Brain *get_brain();
 };
 
 #endif
