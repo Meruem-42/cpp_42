@@ -7,6 +7,7 @@ NAME = animal_with_brain
 SRC =	src/Animal.cpp \
 		src/Cat.cpp \
  		src/Dog.cpp \
+ 		src/Brain.cpp \
  		src/WrongAnimal.cpp \
 		src/main.cpp
 		
