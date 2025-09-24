@@ -2,12 +2,9 @@ CXX = c++
 
 CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
-NAME = animal
+NAME = Bureaucrat
 
-SRC =	src/Animal.cpp \
-		src/Cat.cpp \
- 		src/Dog.cpp \
- 		src/WrongAnimal.cpp \
+SRC =	src/Bureaucrat.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
