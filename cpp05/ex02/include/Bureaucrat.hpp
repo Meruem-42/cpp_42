@@ -7,8 +7,8 @@ class AForm;
 class Bureaucrat
 {
 private:
-    const std::string name;
-    int grade;
+    const std::string name_;
+    int grade_;
 public:
     Bureaucrat(std::string n, int g);
     Bureaucrat(const Bureaucrat& other);
@@ -34,6 +34,8 @@ public:
     void decrementGrade();
 
     void signForm(AForm& c);
+
+    void executeForm(AForm const & form) const;
 };
 
 std::ostream &operator<<(std::ostream &cout, const Bureaucrat &b);
