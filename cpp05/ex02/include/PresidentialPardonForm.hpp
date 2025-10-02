@@ -2,14 +2,19 @@
 # define PRESIDENTIALPARDONFORM_HPP
 
 #include "../include/AForm.hpp"
+class Bureaucrat;
 
 class PresidentialPardonForm : public AForm
 {
-private:
-    /* data */
+private :
+    std::string target_; 
 public:
-    PresidentialPardonForm(/* args */);
+    PresidentialPardonForm(std::string target);
+    PresidentialPardonForm(const PresidentialPardonForm& other);
+    PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
     ~PresidentialPardonForm();
+
+    void executeAction() const override;
 };
 
 #endif

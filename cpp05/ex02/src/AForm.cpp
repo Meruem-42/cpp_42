@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/AForm.hpp"
+#include "../include/Bureaucrat.hpp"
 
 AForm::AForm(std::string name, int grade_sign, int grade_exec)
     : name_(name), 
@@ -64,6 +65,29 @@ int AForm::getGradeExec() const
     return (grade_exec_);
 }
 
+void AForm::beSigned(Bureaucrat& c)
+{
+    if(c.getGrade() <= grade_sign_)
+        sign_ = true;
+    else
+        throw AForm::GradeTooLowException();
+}
+
+void AForm::execute(Bureaucrat const & executor) const
+{
+    if (executor.getGrade() > grade_exec_)
+        throw AForm::GradeTooLowException();
+    else if (this->sign_ != true)
+        throw AForm::FormNotSignedException();
+    else
+        executeAction();
+}
+
+void AForm::executeAction() const
+{
+}
+
+
 const char *AForm::GradeTooHighException::what() const throw()
 {
     return ("Grade too high");
@@ -73,6 +97,12 @@ const char *AForm::GradeTooLowException::what() const throw()
 {
     return ("Grade too low");
 }
+
+const char *AForm::FormNotSignedException::what() const throw()
+{
+    return ("Form not signed");
+}
+
 
 std::ostream &operator<<(std::ostream &cout, const AForm& other)
 {

@@ -6,10 +6,14 @@
 class ShrubberyCreationForm : public AForm
 {
 private:
-    /* data */
+    std::string target_;
 public:
-    ShrubberyCreationForm(/* args */);
+    ShrubberyCreationForm(std::string target);
+    ShrubberyCreationForm(const ShrubberyCreationForm &other);
+    ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
     ~ShrubberyCreationForm();
+
+    void executeAction() const override;
 };
 
 

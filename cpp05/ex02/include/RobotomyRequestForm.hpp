@@ -6,11 +6,14 @@
 class RobotomyRequestForm : public AForm
 {
 private:
-    /* data */
+    std::string target_;
 public:
-    RobotomyRequestForm(/* args */);
+    RobotomyRequestForm(std::string target);
+    RobotomyRequestForm(const RobotomyRequestForm &other);
+    RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
     ~RobotomyRequestForm();
-};
 
+    void executeAction() const override;
+};
 
 #endif
