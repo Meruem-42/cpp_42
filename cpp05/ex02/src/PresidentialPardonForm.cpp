@@ -13,7 +13,7 @@
 #include "../include/PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-    : AForm("PresidentialPardonForm", 145, 137), target_(target)
+    : AForm("PresidentialPardonForm", 25, 5), target_(target)
 {
     std::cout << "PresidentialPardonForm Default constructor called" << std::endl;
 }
