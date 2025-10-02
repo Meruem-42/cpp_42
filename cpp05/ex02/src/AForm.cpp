@@ -38,6 +38,7 @@ AForm &AForm::operator=(const AForm& other)
 {
     std::cout << "AForm copy operator constructor called" << std::endl;
     this->sign_ = other.sign_;
+    return (*this);
 }
 
 AForm::~AForm()

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/RobotomyRequestForm.hpp"
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
     : AForm("RobotomyRequestForm", 72, 45), target_(target)
@@ -39,5 +40,10 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::executeAction() const
 {
+    std::cout << "drilling noises" << std::endl;
+    if(std::rand() % 2 == 0)
+        std::cout << "robotomized successfully" << std::endl;
+    else
+        std::cout << "robotomy failed" << std::endl;
 }
 

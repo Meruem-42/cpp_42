@@ -13,7 +13,13 @@ public:
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
     ~ShrubberyCreationForm();
 
-    void executeAction() const override;
+    class FileErrorException : public std::exception
+    {
+        public :
+        const char *what() const throw();
+    };
+
+    void executeAction() const;
 };
 
 

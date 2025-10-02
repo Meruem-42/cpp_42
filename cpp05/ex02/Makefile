@@ -5,7 +5,10 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 NAME = Bureaucrat
 
 SRC =	src/Bureaucrat.cpp \
-		src/Form.cpp \
+		src/AForm.cpp \
+		src/ShrubberyCreationForm.cpp \
+		src/RobotomyRequestForm.cpp \
+		src/PresidentialPardonForm.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m

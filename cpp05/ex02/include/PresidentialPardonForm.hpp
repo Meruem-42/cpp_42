@@ -14,7 +14,7 @@ public:
     PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
     ~PresidentialPardonForm();
 
-    void executeAction() const override;
+    void executeAction() const;
 };
 
 #endif
