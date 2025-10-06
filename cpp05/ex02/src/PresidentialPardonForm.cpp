@@ -24,9 +24,9 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
     std::cout << "PresidentialPardonForm Copy constructor called" << std::endl;
 }
 
-
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 {
+    std::cout << "PresidentialPardonForm Copy operator called" << std::endl;
     AForm::operator=(other);
     this->target_ = other.target_;
     return (*this);
@@ -41,4 +41,3 @@ void PresidentialPardonForm::executeAction() const
 {
     std::cout << target_ << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
-
