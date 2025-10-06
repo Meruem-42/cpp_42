@@ -14,12 +14,19 @@
 
 int main ()
 {
-    Bureaucrat a("Guy", 10);
+    Bureaucrat a("Guy", 1);
+    Bureaucrat c("Pierre", 30);
+    Bureaucrat d("Paul", 50);
     Bureaucrat b("Bob", 150);
 
     try
     {
-        b.decrementGrade();
+        c.incrementGrade();
+        d.decrementGrade();
+        // a.incrementGrade();
+        // b.decrementGrade();
+        // Bureaucrat e("Max", 151);
+        Bureaucrat f("Jack", 0);
     }
     catch (const Bureaucrat::GradeTooHighException& e)
     {
@@ -29,5 +36,7 @@ int main ()
     {
         std::cout << e.what() << std::endl;
     }
-    std::cout << b << std::endl;
+
+    std::cout << c << std::endl;
+    std::cout << d << std::endl;
 }
