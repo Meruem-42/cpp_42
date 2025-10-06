@@ -13,32 +13,26 @@
 #include "../include/Form.hpp"
 #include "../include/Bureaucrat.hpp"
 
-Form::Form(std::string& n, int gs, int ge)
-    : name(n), grade_sign(gs), grade_exec(ge)
+Form::Form(std::string const& n, int gs, int ge)
+    : name_(n),  sign_(0), grade_sign_(gs), grade_exec_(ge)
 {
-    if(grade_sign < 1 || grade_exec < 1)
-        throw Form::GradeTooHighException();
-    if(grade_exec > 150 || grade_sign > 150)
-        throw Form::GradeTooLowException();
     std::cout << "Form Default constructor called" << std::endl;
-    sign = 0;
+    if(grade_sign_ < 1 || grade_exec_ < 1)
+        throw Form::GradeTooHighException();
+    if(grade_exec_ > 150 || grade_sign_ > 150)
+        throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form& other)
-    : name(other.name), grade_sign(other.grade_sign), grade_exec(other.grade_exec)
+    : name_(other.name_), sign_(other.sign_), grade_sign_(other.grade_sign_), grade_exec_(other.grade_exec_)
 {
-    // std::cout << "Form Copy constructor called" << std::endl;
-    // if(other.grade_sign < 1 || other.grade_exec < 1)
-    //     throw Form::GradeTooHighException();
-    // if(other.grade_exec > 150 || other.grade_sign > 150)
-    //     throw Form::GradeTooLowException();
-    sign = other.sign;
+    std::cout << "Form Copy constructor called" << std::endl;
 }
 
 Form &Form::operator=(const Form& other)
 {
-    std::cout << "Form Copy operator constructor called" << std::endl;
-    this->sign = other.sign;
+    std::cout << "Form Copy operator called" << std::endl;
+    this->sign_ = other.sign_;
     return (*this);
 }
 
@@ -49,31 +43,30 @@ Form::~Form()
 
 std::string Form::getName() const
 {
-    return (name);
+    return (name_);
 }
 
 bool Form::getSign() const
 {
-    return (sign);
+    return (sign_);
 }
 
 int Form::getGradeSign() const
 {
-    return (grade_sign);
+    return (grade_sign_);
 }
 
 int Form::getGradeExec() const
 {
-    return (grade_exec);
+    return (grade_exec_);
 }
 
 void Form::beSigned(Bureaucrat& c)
 {
-    if(c.getGrade() <= grade_sign)
-        sign = true;
+    if(c.getGrade() <= grade_sign_)
+        sign_ = true;
     else
         throw Form::GradeTooLowException();
-
 }
 
 const char *Form::GradeTooHighException::what() const throw()
@@ -89,8 +82,7 @@ const char *Form::GradeTooLowException::what() const throw()
 std::ostream &operator<<(std::ostream& cout, const Form& other)
 {
     if (other.getSign())
-        return (cout << other.getName() << ", Form can be signed by Bureaucrat of grade " << other.getGradeSign() << " and can be executed by Bureaucrat of the grade " << other.getGradeExec() << ". This Form is signed.");
+        return (cout << other.getName() << " Form can be signed by Bureaucrat of grade " << other.getGradeSign() << " and can be executed by Bureaucrat of the grade " << other.getGradeExec() << ". This Form is signed.");
     else
-        return (cout << other.getName() << ", Form can be signed by Bureaucrat of grade " << other.getGradeSign() << " and can be executed by Bureaucrat of the grade " << other.getGradeExec() << ". This Form is not signed.");
+        return (cout << other.getName() << " Form can be signed by Bureaucrat of grade " << other.getGradeSign() << " and can be executed by Bureaucrat of the grade " << other.getGradeExec() << ". This Form is not signed.");
 }
-
