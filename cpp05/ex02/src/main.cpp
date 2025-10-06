@@ -13,22 +13,37 @@
 #include "../include/Bureaucrat.hpp"
 #include "../include/AForm.hpp"
 #include "../include/ShrubberyCreationForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
+#include "../include/PresidentialPardonForm.hpp"
 #include "../include/Bureaucrat.hpp"
 
 int main ()
 {
-    Bureaucrat a("Guy", 10);
-    // Bureaucrat b("Bob", 151);
-    // Bureaucrat c(b);
-    ShrubberyCreationForm test("lala");
+    Bureaucrat shrub("Shrub", 137);
+    Bureaucrat robot("Robot", 45);
+    Bureaucrat presi("Presi", 5);
+    // AForm test("bad test", 4, 4);
+    // Bureaucrat a("Bob", 150);
 
-    test.beSigned(a);
-    std::cout << test.getGradeExec() << std::endl;
+    ShrubberyCreationForm shru("presi_target");
+    RobotomyRequestForm rob("robot_target");
+    PresidentialPardonForm pre("presi_target");
 
-    test.execute(a);
+    shru.beSigned(shrub);
+    rob.beSigned(robot);
+    pre.beSigned(presi);
+
+    std::cout << shru << std::endl;
+    std::cout << rob << std::endl;
+    std::cout << pre << std::endl;
+
+    shru.execute(shrub);
+    rob.execute(robot);
+    pre.execute(presi);
+
     // try
     // {
-    //     b.decrementGrade();
+    //     shru.decrementGrade();
     // }
     // catch (const Bureaucrat::GradeTooHighException& e)
     // {
