@@ -23,9 +23,9 @@ int main ()
     Bureaucrat robot("Robot", 45);
     Bureaucrat presi("Presi", 5);
     // AForm test("bad test", 4, 4);
-    // Bureaucrat a("Bob", 150);
+    Bureaucrat a("Bob", 150);
 
-    ShrubberyCreationForm shru("presi_target");
+    ShrubberyCreationForm shru("shrub_target");
     RobotomyRequestForm rob("robot_target");
     PresidentialPardonForm pre("presi_target");
 
@@ -33,26 +33,12 @@ int main ()
     rob.beSigned(robot);
     pre.beSigned(presi);
 
-    std::cout << shru << std::endl;
-    std::cout << rob << std::endl;
-    std::cout << pre << std::endl;
+    // TEST FAIL EXECFORM FROM BUREAUCRAT
+    // presi.executeForm(pre);
+    // shrub.executeForm(shru);
+    // robot.executeForm(rob);
 
-    shru.execute(shrub);
-    rob.execute(robot);
-    pre.execute(presi);
-
-    // try
-    // {
-    //     shru.decrementGrade();
-    // }
-    // catch (const Bureaucrat::GradeTooHighException& e)
-    // {
-    //     std::cout << e.what() << std::endl;
-    // }
-    // catch (const Bureaucrat::GradeTooLowException& e)
-    // {
-    //     std::cout << e.what() << std::endl;
-    // }
-    // std::cout << b << std::endl;
-    // std::cout << c << std::endl;
+    shrub.executeForm(shru);
+    robot.executeForm(rob);
+    presi.executeForm(pre);
 }
