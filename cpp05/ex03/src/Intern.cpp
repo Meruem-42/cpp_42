@@ -54,21 +54,27 @@ AForm *CreatePresidential(std::string const &target)
     return (new PresidentialPardonForm(target));
 }
 
-
-AForm *Intern::makeForm(std::string form_name, std::string target)
+AForm *Intern::makeForm(std::string form_name, std::string target) const
 {
-    std::string form_array[3] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+    std::string form_array[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
     AForm* (*Formptr[3])(std::string const &) = {&CreatePresidential, &CreateRobotomy, &CreateShrubbery};
 
     for(int i = 0; i < 3; ++i)
     {
         if(form_name == form_array[i])
         {
-            std::cout << "Intern creates " << form_name << std::endl;
-            return (Formptr[i](target));
+            try
+            {
+                std::cout << "Intern creates " << form_name << " form" << std::endl;
+                return (Formptr[i](target));                
+            }
+            catch(const std::bad_alloc& e)
+            {
+                std::cerr << e.what() << std::endl;
+            }
+            
         }
     }
     std::cout << "Intern can't find the form format " << form_name << std::endl;
     return (NULL);
 }
-

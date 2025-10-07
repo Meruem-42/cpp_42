@@ -12,17 +12,16 @@
 
 #include "../include/Bureaucrat.hpp"
 #include "../include/AForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
 Bureaucrat::Bureaucrat(std::string n, int g)
-    : name_(n)
+    : name_(n), grade_(g)
 {
     std::cout << "Default Bureaucrat constructor called" << std::endl;
     if(g > 150)
         throw Bureaucrat::GradeTooLowException();
     else if (g < 1)
         throw Bureaucrat::GradeTooHighException();
-    else
-        grade_ = g;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
@@ -76,6 +75,7 @@ void Bureaucrat::signForm(AForm& c)
     catch(const AForm::GradeTooLowException& e)
     {
         std::cout << this->name_ << " couldn't sign " << c.getName() << " because " << e.what() << std::endl;
+        return ;
     }
     std::cout << this->name_ << " signed " << c.getName() << std::endl;
 }
@@ -89,12 +89,19 @@ void Bureaucrat::executeForm(AForm const & form) const
     catch(const AForm::GradeTooLowException& e)
     {
         std::cout << e.what() << std::endl;
+        return ;
     }
     catch(const AForm::FormNotSignedException& e)
     {
         std::cout << e.what() << std::endl;
+        return ;
     }
-    std::cout << name_ << " executed " << form.getName();
+    catch(const ShrubberyCreationForm::FileErrorException& e)
+    {
+        std::cout << e.what() << std::endl;
+        return ;
+    }
+    std::cout << name_ << " executed sucessfully " << form.getName() << std::endl;
 }
 
 
