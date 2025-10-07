@@ -12,6 +12,7 @@
 
 #include "../include/Bureaucrat.hpp"
 #include "../include/AForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
 
 Bureaucrat::Bureaucrat(std::string n, int g)
     : name_(n), grade_(g)
@@ -91,6 +92,11 @@ void Bureaucrat::executeForm(AForm const & form) const
         return ;
     }
     catch(const AForm::FormNotSignedException& e)
+    {
+        std::cout << e.what() << std::endl;
+        return ;
+    }
+    catch(const ShrubberyCreationForm::FileErrorException& e)
     {
         std::cout << e.what() << std::endl;
         return ;
