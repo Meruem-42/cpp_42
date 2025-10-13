@@ -4,7 +4,8 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 NAME = Convert
 
-SRC =	src/Bureaucrat.cpp \
+SRC =	src/ScalarConverter.cpp \
+		src/utils.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
