@@ -12,6 +12,10 @@ public:
     ~ScalarConverter();
 
     static void convert(const std::string scalar);
+    
 };
+
+void convert_from_int(std::string scalar);
+void convert_from_float(std::string scalar);
 
 #endif
