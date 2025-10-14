@@ -16,6 +16,16 @@
 #include <cmath>
 #include <cstdlib>
 
+void convert_from_char(char c)
+{
+    std::cout << "char : ";
+         std::cout << "'" << c << "'" << std::endl;  
+    std::cout << "int : " << static_cast<int>(c) << std::endl;
+    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "float : " << static_cast<float>(c) << "f" << std::endl;  
+    std::cout << "double : "  << static_cast<double>(c) << std::endl;  
+}
+
 void convert_from_int(std::string scalar)
 {
     std::stringstream ss(scalar);
@@ -34,11 +44,7 @@ void convert_from_int(std::string scalar)
     std::cout << "double : "  << static_cast<double>(test) << std::endl;  
 }
 
-// void convert_special_float(std::string scalar)
-// {
-// }
-
-void convert_from_float(std::string scalar)
+void convert_special_float(std::string scalar)
 {
     if(scalar == "nanf")
         scalar = "nan";
@@ -46,6 +52,36 @@ void convert_from_float(std::string scalar)
         scalar = "+inf";
     if(scalar == "-inff")
         scalar = "-inf";
+    float test;
+
+    // ss >> test;
+    test = std::atof(scalar.c_str());
+
+    std::cout << "char : ";
+    std::cout << "impossible" << std::endl;
+    std::cout << "int : " << "impossible" << std::endl;
+    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "float : " << test << "f" << std::endl;  
+    std::cout << "double : "  << static_cast<double>(test) << std::endl;  
+}
+
+void convert_special_double(std::string scalar)
+{
+    double test;
+    char *end;
+
+    test = std::strtod(scalar.c_str(), &end);
+
+    std::cout << "char : ";
+    std::cout << "impossible" << std::endl;
+    std::cout << "int : " << "impossible" << std::endl;
+    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "float : " << static_cast<float>(test) << "f" << std::endl;  
+    std::cout << "double : "  << test << std::endl;  
+}
+
+void convert_from_float(std::string scalar)
+{
 
     // std::stringstream ss(scalar);
     float test;
@@ -80,4 +116,12 @@ void convert_from_double(std::string scalar)
     std::cout << std::fixed << std::setprecision(1);
     std::cout << "float : " << static_cast<float>(test) << "f" << std::endl;  
     std::cout << "double : "  << test << std::endl;  
+}
+
+void convert_from_error(void)
+{
+    std::cout << "char : " << "impossible" << std::endl;
+    std::cout << "int : " << "impossible" << std::endl;
+    std::cout << "float : " << "impossible" << std::endl;  
+    std::cout << "double : "  << "impossible" << std::endl;  
 }

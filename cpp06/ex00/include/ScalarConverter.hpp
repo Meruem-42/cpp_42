@@ -15,7 +15,13 @@ public:
     
 };
 
+void convert_from_char(char c);
 void convert_from_int(std::string scalar);
 void convert_from_float(std::string scalar);
+void convert_special_double(std::string scalar);
+void convert_special_float(std::string scalar);
+void convert_from_float(std::string scalar);
+void convert_from_double(std::string scalar);
+void convert_from_error(void);
 
 #endif
