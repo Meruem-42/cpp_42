@@ -90,13 +90,15 @@ void convert_from_float(std::string scalar)
     float test;
 
     test = std::atof(scalar.c_str());
-    if (test < FLT_MIN || test > FLT_MAX)
+    if (test < -FLT_MAX || test > FLT_MAX)
         return (convert_from_error());
     std::cout << "char : ";
     if (test > 32 && test < 126)
          std::cout << "'" << static_cast<char>(test) << "'" << std::endl;  
-    else
+    else if (test >= 0 && test < 32)
         std::cout << "Non displayable" << std::endl;
+    else
+        std::cout << "impossible" << std::endl;
     if (static_cast<int>(test) < INT_MIN || static_cast<int>(test) > INT_MAX)
         std::cout << "int : " << "impossible" << std::endl;
     else
@@ -112,22 +114,24 @@ void convert_from_double(std::string scalar)
     double test;
 
     ss >> test;
-    if (test < DBL_MIN || test > DBL_MAX)
+    if (test < -DBL_MAX || test > DBL_MAX)
         return (convert_from_error());
     std::cout << "char : ";
     if (test > 32 && test < 126)
          std::cout << "'" << static_cast<char>(test) << "'" << std::endl;  
-    else
+    else if (test >= 0 && test < 32)
         std::cout << "Non displayable" << std::endl;
+    else
+        std::cout << "impossible" << std::endl;
     if (static_cast<int>(test) < INT_MIN || static_cast<int>(test) > INT_MAX)
         std::cout << "int : " << "impossible" << std::endl;
     else
         std::cout << "int : " << static_cast<int>(test) << std::endl;
     std::cout << std::fixed << std::setprecision(1);
-    if (static_cast<float>(test) < FLT_MIN || static_cast<float>(test) > FLT_MAX)
+    if (static_cast<float>(test) < -FLT_MAX || static_cast<float>(test) > FLT_MAX)
         std::cout << "float : " << "impossible" << std::endl;
     else
-        std::cout << "float : " << static_cast<int>(test) << std::endl;
+        std::cout << "float : " << static_cast<float>(test) << std::endl;
     std::cout << "double : "  << test << std::endl;  
 }
 

@@ -6,6 +6,7 @@ NAME = Convert
 
 SRC =	src/ScalarConverter.cpp \
 		src/utils.cpp \
+		src/conversion.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m
