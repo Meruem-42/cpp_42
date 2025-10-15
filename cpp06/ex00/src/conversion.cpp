@@ -6,7 +6,7 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:52:09 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/10/14 17:24:52 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/10/15 12:02:39 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void convert_from_int(std::string scalar)
     int test;
 
     ss >> test;
-    if (test < INT_MIN || test > INT_MAX)
+    if (ss.fail() || std::isinf(test))
         return (convert_from_error());
     std::cout << "char : ";
     if (test > 32 && test < 126)
@@ -99,7 +99,7 @@ void convert_from_float(std::string scalar)
         std::cout << "Non displayable" << std::endl;
     else
         std::cout << "impossible" << std::endl;
-    if (static_cast<int>(test) < INT_MIN || static_cast<int>(test) > INT_MAX)
+    if (test < static_cast<float>(INT_MIN) || test > static_cast<float>(INT_MAX))
         std::cout << "int : " << "impossible" << std::endl;
     else
         std::cout << "int : " << static_cast<int>(test) << std::endl;
@@ -114,7 +114,7 @@ void convert_from_double(std::string scalar)
     double test;
 
     ss >> test;
-    if (test < -DBL_MAX || test > DBL_MAX)
+    if (ss.fail() || std::isinf(test))
         return (convert_from_error());
     std::cout << "char : ";
     if (test > 32 && test < 126)
@@ -123,7 +123,7 @@ void convert_from_double(std::string scalar)
         std::cout << "Non displayable" << std::endl;
     else
         std::cout << "impossible" << std::endl;
-    if (static_cast<int>(test) < INT_MIN || static_cast<int>(test) > INT_MAX)
+    if (test < INT_MIN || test > INT_MAX)
         std::cout << "int : " << "impossible" << std::endl;
     else
         std::cout << "int : " << static_cast<int>(test) << std::endl;
@@ -131,7 +131,7 @@ void convert_from_double(std::string scalar)
     if (static_cast<float>(test) < -FLT_MAX || static_cast<float>(test) > FLT_MAX)
         std::cout << "float : " << "impossible" << std::endl;
     else
-        std::cout << "float : " << static_cast<float>(test) << std::endl;
+        std::cout << "float : " << static_cast<float>(test) << "f" << std::endl;
     std::cout << "double : "  << test << std::endl;  
 }
 
