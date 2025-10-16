@@ -6,7 +6,7 @@
 /*   By: aherlaud <aherlaud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 18:44:53 by aherlaud          #+#    #+#             */
-/*   Updated: 2025/10/15 19:00:50 by aherlaud         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:11:27 by aherlaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int main ()
     test.identify(a_ref);
     test.identify(b_ref);
     test.identify(c_ref);
+    test.identify(test);
 }
