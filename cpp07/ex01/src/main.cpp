@@ -19,6 +19,8 @@ void print_elem_array(int elem)
 
 int main()
 {
-    int array[5] = {1, 2, 3, 4, 5};
+    const int array[5] = {1, 2, 3, 4, 5};
+    int array_bis[5] = {1, 2, 3, 4, 5};
     iter(array, 5, print_elem_array);
+    iter(array_bis, 5, print_elem_array);
 }
