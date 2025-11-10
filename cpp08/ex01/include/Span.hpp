@@ -2,13 +2,14 @@
 #define EASYFIND_HPP
 
 #include <iostream>
+#include <cmath>
 
 class Span
 {
 private:
     int *array_;
     unsigned int N_;
-    int fill_number_;
+    unsigned int fill_number_;
 
 public:
     Span();
@@ -18,8 +19,16 @@ public:
     ~Span();
 
 
-    void addNumber();
+    void addNumber(int num);
+    int shortestSpan() const;
+    int longestSpan() const;
     class IsFull : std::exception
+    {
+    public:
+        const char *why() const throw();
+    };
+
+    class NotEnoughElement : std::exception
     {
     public:
         const char *why() const throw();
