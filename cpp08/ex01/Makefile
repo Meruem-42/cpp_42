@@ -2,10 +2,11 @@ CXX = c++
 
 CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
-NAME = easyfind
+NAME = span
 
-SRC =	src/main.cpp
-		
+SRC =	src/Span.cpp \
+		src/main.cpp
+
 GREEN = \033[32m
 YELLOW = \033[33m
 RESET = \033[0m
