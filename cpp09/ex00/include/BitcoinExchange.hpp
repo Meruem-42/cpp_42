@@ -19,16 +19,23 @@ public :
     std::string to_string() const;
 };
 
+std::ostream &operator<<(std::ostream &stream, const Date &date);
+Date getDate(std::string line);
+float getNumber(std::string line);
+
 
 class BitcoinExchange
 {
 private:
-    std::map<Date, int> mapping_;
+    std::map<Date, float> mapping_;
 public:
     // BitcoinExchange();
     BitcoinExchange(const char* file_name);
     // ~BitcoinExchange();
+    float search_value(Date key);
 };
+
+
 
 
 #endif

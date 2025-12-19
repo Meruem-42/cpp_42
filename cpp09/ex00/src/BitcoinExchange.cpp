@@ -3,9 +3,16 @@
 
 int toInt(std::string str)
 {
-    std::stringstream ss;
+    std::stringstream ss(str);
     int temp;
-    ss << str;
+    ss >> temp;
+    return temp;
+}
+
+float toFloat(std::string str)
+{
+    std::stringstream ss(str);
+    float temp;
     ss >> temp;
     return temp;
 }
@@ -31,14 +38,14 @@ Date::Date(std::string date)
 
 bool Date::operator<(const Date& other) const
 {
-    if(this->year_ < other.year_)
-        return true;
-    if(this->month_ < other.month_)
-        return true;
-    if(this->day_ < other.day_)
-        return true;
-    return false;
+    if (year_ != other.year_)
+        return year_ < other.year_;
+    if (month_ != other.month_)
+        return month_ < other.month_;
+    return day_ < other.day_;
 }
+
+
 
 std::string Date::to_string() const
 {
@@ -48,11 +55,22 @@ std::string Date::to_string() const
 }
 
 
-
 // void check_and_map_line(std::string line)
 // {
+
 //     // mapping_[get_date_key(line)];
 // }
+
+Date getDate(std::string line)
+{
+    return Date(line);
+}
+
+float getNumber(std::string line)
+{
+    return (toFloat(line));
+}
+
 
 BitcoinExchange::BitcoinExchange(const char* file_name)
 {
@@ -64,7 +82,33 @@ BitcoinExchange::BitcoinExchange(const char* file_name)
     std::getline(file, line);
     // verify_header(line);
     while(std::getline(file, line))
-        // check_and_map_line(line);
-        std::cout << line << "\n";
+    {
+        std::stringstream ss(line);
+        std::string item;
+        std::getline(ss, item, ',');
+        Date date = getDate(item);
+        // std::cout << date.to_string();
+        std::getline(ss, item);
+        float number = getNumber(item);
+        // std::cout << " | " << number << std::endl;
+        mapping_[date] = number;
 
+    }
+    // for (std::map<Date, float>::const_iterator it = mapping_.begin();
+    //     it != mapping_.end();
+    //     ++it)
+    // {
+    //     const Date& key = it->first;
+    //     float value = it->second;
+
+    //     std::cout << key.to_string() << " -> " << value << '\n';
+    // }
+}
+
+float BitcoinExchange::search_value(Date key)
+{
+    std::map<Date, float>::const_iterator it = mapping_.lower_bound(key);
+    if(it != mapping_.begin() && key < it->first)
+        --it;
+    return (it->second);
 }
