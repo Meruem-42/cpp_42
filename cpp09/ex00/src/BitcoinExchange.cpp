@@ -50,8 +50,29 @@ bool Date::operator<(const Date& other) const
 std::string Date::to_string() const
 {
     std::stringstream ss;
-    ss << year_ << "-" << month_ << "-" << day_;
+    ss << year_ << "-";
+    if (month_ < 10)
+        ss << "0"; 
+    ss << month_ << "-";
+    if (day_ < 10)
+        ss << "0"; 
+    ss << day_;
     return ss.str();
+}
+
+int Date::getYear()
+{
+    return (year_);
+}
+
+int Date::getMonth()
+{
+    return (month_);
+}
+
+int Date::getDay()
+{
+    return (day_);
 }
 
 
@@ -109,6 +130,8 @@ float BitcoinExchange::search_value(Date key)
 {
     std::map<Date, float>::const_iterator it = mapping_.lower_bound(key);
     if(it != mapping_.begin() && key < it->first)
+        --it;
+    if (it == mapping_.end())
         --it;
     return (it->second);
 }

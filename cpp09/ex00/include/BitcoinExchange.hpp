@@ -17,6 +17,9 @@ public :
     Date(std::string date);
     bool operator<(const Date& other) const;
     std::string to_string() const;
+    int getYear();
+    int getMonth();
+    int getDay();
 };
 
 std::ostream &operator<<(std::ostream &stream, const Date &date);
