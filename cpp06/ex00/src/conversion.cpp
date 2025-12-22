@@ -34,7 +34,7 @@ void convert_from_int(std::string scalar)
     int test;
 
     ss >> test;
-    if (ss.fail() || std::isinf(test))
+    if (ss.fail())
         return (convert_from_error());
     std::cout << "char : ";
     if (test > 32 && test < 126)
@@ -51,16 +51,10 @@ void convert_from_int(std::string scalar)
 
 void convert_special_float(std::string scalar)
 {
-    if(scalar == "nanf")
-        scalar = "nan";
-    if(scalar == "+inff")
-        scalar = "+inf";
-    if(scalar == "-inff")
-        scalar = "-inf";
     float test;
+    char *end;
 
-    // ss >> test;
-    test = std::atof(scalar.c_str());
+    test = std::strtof(scalar.c_str(), &end);
 
     std::cout << "char : ";
     std::cout << "impossible" << std::endl;
@@ -87,11 +81,13 @@ void convert_special_double(std::string scalar)
 
 void convert_from_float(std::string scalar)
 {
+    std::stringstream ss(scalar);
     float test;
 
-    test = std::atof(scalar.c_str());
-    if (test < -FLT_MAX || test > FLT_MAX)
+    ss >> test;
+    if (ss.fail())
         return (convert_from_error());
+        
     std::cout << "char : ";
     if (test > 32 && test < 126)
          std::cout << "'" << static_cast<char>(test) << "'" << std::endl;  
@@ -99,7 +95,7 @@ void convert_from_float(std::string scalar)
         std::cout << "Non displayable" << std::endl;
     else
         std::cout << "impossible" << std::endl;
-    if (test < static_cast<float>(INT_MIN) || test > static_cast<float>(INT_MAX))
+    if (static_cast<double>(test) < static_cast<double>(INT_MIN) || static_cast<double>(test) > static_cast<double>(INT_MAX))
         std::cout << "int : " << "impossible" << std::endl;
     else
         std::cout << "int : " << static_cast<int>(test) << std::endl;
@@ -123,12 +119,12 @@ void convert_from_double(std::string scalar)
         std::cout << "Non displayable" << std::endl;
     else
         std::cout << "impossible" << std::endl;
-    if (test < INT_MIN || test > INT_MAX)
+    if (test < static_cast<double>(INT_MIN) || test > static_cast<double>(INT_MAX))
         std::cout << "int : " << "impossible" << std::endl;
     else
         std::cout << "int : " << static_cast<int>(test) << std::endl;
     std::cout << std::fixed << std::setprecision(1);
-    if (static_cast<float>(test) < -FLT_MAX || static_cast<float>(test) > FLT_MAX)
+    if (test < -static_cast<double>(FLT_MAX) || test > static_cast<double>(FLT_MAX))
         std::cout << "float : " << "impossible" << std::endl;
     else
         std::cout << "float : " << static_cast<float>(test) << "f" << std::endl;

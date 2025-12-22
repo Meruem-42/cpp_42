@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 NAME = Convert
 
 SRC =	src/ScalarConverter.cpp \
-		src/utils.cpp \
+		src/check_type.cpp \
 		src/conversion.cpp \
 		src/main.cpp
 		
