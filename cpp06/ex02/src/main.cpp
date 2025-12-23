@@ -22,11 +22,19 @@ int main ()
     B b_ref;
     C c_ref;
     Base test;
+    Base test_ref;
+    Base *test_ptr;
+
+    test_ptr = new Base();
     
     ptr = test.generate();
     test.identify(ptr);
     test.identify(a_ref);
     test.identify(b_ref);
     test.identify(c_ref);
-    test.identify(test);
+    test.identify(test_ref);
+    test.identify(test_ptr);
+
+    delete test_ptr;
+    delete ptr;
 }
