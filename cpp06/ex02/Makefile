@@ -2,7 +2,7 @@ CXX = c++
 
 CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
-NAME = Serialize
+NAME = identify
 
 SRC =	src/Base.cpp \
 		src/main.cpp
