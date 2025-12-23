@@ -13,6 +13,7 @@ public:
     Data(const Data& other);
     Data &operator=(const Data& other);
 
+    int get_data();
     ~Data();
 };
 
