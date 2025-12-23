@@ -6,7 +6,6 @@ NAME = Serialize
 
 SRC =	src/Serializer.cpp \
 		src/Data.cpp \
-		src/utils.cpp \
 		src/main.cpp
 		
 GREEN = \033[32m

@@ -35,3 +35,9 @@ Data &Data::operator=(const Data& other)
 Data::~Data()
 {
 }
+
+int Data::get_data()
+{
+    return (data_);
+}
+
