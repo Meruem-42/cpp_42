@@ -1,8 +1,8 @@
 CXX = c++
 
-CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
-NAME = template
+NAME = whatever
 
 SRC =  src/main.cpp
 		
