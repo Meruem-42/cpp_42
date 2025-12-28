@@ -4,17 +4,23 @@
 #include <iostream>
 
 template <typename T, typename F>
-void iter(T *array, std::size_t array_len, F func)
+void iter(T *array, const std::size_t array_len, F func)
 {
     for (std::size_t i = 0; i < array_len; ++i)
         func(array[i]);
 }
 
-template <typename T, typename F>
-void iter(const T *array, std::size_t array_len, F func)
+
+template <typename T>
+void print_temp(T &x)
 {
-    for (std::size_t i = 0; i < array_len; ++i)
-        func(array[i]);
+    std::cout << x << std::endl;
+}
+
+template <typename T>
+void increment_temp(T& x)
+{
+    ++x;
 }
 
 #endif
