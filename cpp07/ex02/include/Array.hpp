@@ -19,7 +19,6 @@ public:
 
     unsigned int size() const;
     T &operator[](unsigned int index);
-    const T &operator[](unsigned int index) const;
 
     class OutOfBounds : public std::exception
     {
