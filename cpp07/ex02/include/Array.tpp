@@ -1,4 +1,3 @@
-// #include "../include/Array.hpp"
 #include <iostream>
 
 template <typename T>
@@ -14,7 +13,7 @@ Array<T>::Array(unsigned int size_array)
 }
 
 template <typename T>
-Array<T>::Array(const Array &other)
+Array<T>::Array(const Array<T> &other)
     : size_(other.size_)
 {
     unsigned int size = other.size();
@@ -38,7 +37,6 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 template <typename T>
 Array<T>::~Array()
 {
-    std::cout << "Default dest" << std::endl;
     delete[] array_;
 }
 
@@ -51,15 +49,7 @@ unsigned int Array<T>::size() const
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
-    if (index > size_ - 1)
+    if (index > size_ - 1 || size_ == 0)
         throw Array<T>::OutOfBounds();
-    return (array_[index]);
-}
-
-template <typename T>
-const T &Array<T>::operator[](unsigned int index) const
-{
-    if (index > size_ - 1)
-        throw OutOfBounds::what();
     return (array_[index]);
 }
