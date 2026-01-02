@@ -14,14 +14,14 @@ Span::Span(const Span &other)
     : N_(other.N_)
 {
     for (unsigned int i = 0; i < N_; ++i)
-        array_[i] = other.array_[i];
+        array_.push_back(other.array_[i]);
 }
 
 Span &Span::operator=(const Span &other)
 {
     this->N_ = other.N_;
     for (unsigned int i = 0; i < N_; ++i)
-        this->array_[i] = other.array_[i];
+        array_.push_back(other.array_[i]);
     return (*this);
 }
 
