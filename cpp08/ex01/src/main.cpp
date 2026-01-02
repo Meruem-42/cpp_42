@@ -14,8 +14,8 @@
 
 int main()
 {
-    Span sp = Span(5);
-    sp.addNumber(6);
+    Span sp = Span(10000);
+    sp.addNumber(0);
 
     std::cout << "TEST SHORTEST SPAN WITH NOT ENOUGH ELEMENT\n";
 
@@ -38,10 +38,8 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    sp.addNumber(3);
-    sp.addNumber(17);
-    sp.addNumber(9);
-    sp.addNumber(11);
+    for (int i = 1; i < 10000; ++i)
+        sp.addNumber(i);
 
     std::cout << "TEST ADD NUMBER WHEN VECTOR FULL\n";
     try
@@ -53,9 +51,15 @@ int main()
         std::cout << e.what() << '\n';
     }
 
-    std::cout << "TEST WORKING SHORTES AND LONGEST SPAN\n";
+    std::cout << "TEST WORKING SHORTES AND LONGEST SPAN AND COPY CONSTRUCTOR/OPERATOR\n";
+    Span test3(sp);
+    Span test4 = test3;
     std::cout << "shortest span is : " << sp.shortestSpan() << std::endl;
     std::cout << "longest span is : " << sp.longestSpan() << std::endl;
+    std::cout << "shortest span is : " << test3.shortestSpan() << std::endl;
+    std::cout << "longest span is : " << test3.longestSpan() << std::endl;
+    std::cout << "shortest span is : " << test4.shortestSpan() << std::endl;
+    std::cout << "longest span is : " << test4.longestSpan() << std::endl;
 
     std::cout << "TEST ADD NUMBER WITH A RANGE OF ITERATORS\n";
     try
@@ -74,5 +78,10 @@ int main()
     {
         std::cout << e.what() << '\n';
     }
+    catch (const Span::NotEnoughElement &e)
+    {
+        std::cout << e.what() << '\n';
+    }
+
     return 0;
 }
