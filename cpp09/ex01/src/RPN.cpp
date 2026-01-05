@@ -29,9 +29,17 @@ int RPN::top()
     return (stack_.top());
 }
 
+int RPN::get_final_result()
+{
+    if(stack_.size() != 1)
+        throw ErrorRPN();
+    return (stack_.top());
+}
 
 void RPN::calculate(char operation)
 {
+    if (stack_.size() < 2)
+        throw ErrorRPN();
     int num2 = stack_.top(); 
     stack_.pop();
     int num1 = stack_.top();
@@ -52,12 +60,13 @@ void RPN::calculate(char operation)
             result = num1 - num2;
             break;
         default :
-            return ;        
+            throw ErrorRPN();        
     }
     stack_.push(result);
 }
 
-// void RPN::get_result()
-// {
+const char *RPN::ErrorRPN::what() const throw()
+{
+    return ("Error");
+}
 
-// }
