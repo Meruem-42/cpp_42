@@ -33,3 +33,15 @@ typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end()
 {
     return this->c.end();
 }
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::cbegin() const
+{
+    return this->c.cbegin();
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::cend() const
+{
+    return this->c.cend();
+}

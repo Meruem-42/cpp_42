@@ -52,8 +52,8 @@ int main()
     }
     std::stack<int, std::vector<int> > s2(mstack2);
 
-    // TEST WITH WITH LIST CONTAINER
-    std::cout << "\nTEST WITH WITH LIST CONTAINER\n";
+    // TEST WITH WITH LIST CONTAINER AND CONST_ITERATOR
+    std::cout << "\nTEST WITH WITH LIST CONTAINER AND CONST_ITERATOR\n";
 
     std::list<int> lst;
     lst.push_back(5);
@@ -65,8 +65,8 @@ int main()
     lst.push_back(5);
     lst.push_back(737);
     lst.push_back(0);
-    std::list<int>::iterator it3 = lst.begin();
-    std::list<int>::iterator ite3 = lst.end();
+    std::list<int>::const_iterator it3 = lst.cbegin();
+    std::list<int>::const_iterator ite3 = lst.cend();
     ++it3;
     --it3;
     while (it3 != ite3)
