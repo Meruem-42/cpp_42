@@ -76,5 +76,25 @@ int main()
     }
     std::list<int> s3(lst);
 
+    std::cout << "\nTEST COPY CONSTRUCTOR\n";
+    MutantStack<int, std::vector<int> > mstacktest1(mstack2);
+    MutantStack<int, std::vector<int> >::iterator it4 = mstacktest1.begin();
+    MutantStack<int, std::vector<int> >::iterator ite4 = mstacktest1.end();
+    while (it4 != ite4)
+    {
+        std::cout << *it4 << std::endl;
+        ++it4;
+    }
+    std::cout << "\nTEST OPERATOR=\n";
+    MutantStack<int, std::vector<int> > mstacktest2 = mstack2;
+    MutantStack<int, std::vector<int> >::iterator it5 = mstacktest2.begin();
+    MutantStack<int, std::vector<int> >::iterator ite5 = mstacktest2.end();
+    while (it5 != ite5)
+    {
+        std::cout << *it5 << std::endl;
+        ++it5;
+    }
+
+
     return 0;
 }
