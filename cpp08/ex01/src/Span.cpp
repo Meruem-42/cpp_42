@@ -51,15 +51,13 @@ int Span::shortestSpan() const
 {
     if (array_.size() < 2)
         throw NotEnoughElement();
-    int short_span;
-    for (unsigned long i = 0; i < array_.size(); ++i)
-        for (unsigned long j = i + 1; j < array_.size(); ++j)
-        {
-            if (i == 0)
-                short_span = abs(array_[i] - array_[j]);
-            if (abs(array_[i] - array_[j]) < short_span)
-                short_span = abs(array_[i] - array_[j]);
-        }
+    std::vector<int> array_temp(array_);
+    std::sort(array_temp.begin(), array_temp.end());
+    int short_span = abs(array_temp[0] - array_temp[1]);
+    for (int i = 0; i < array_temp.size()- 1 ; ++i)
+    {
+        short_span = std::min(short_span, abs(array_temp[i] - array_temp[i + 1]));
+    }
     return short_span;
 }
 
@@ -67,19 +65,9 @@ int Span::longestSpan() const
 {
     if (array_.size() < 2)
         throw NotEnoughElement();
-    int min = array_[0];
-    int max = array_[0];
-    for (unsigned long i = 0; i < array_.size(); ++i)
-    {
-        if (array_[i] < min)
-            min = array_[i];
-    }
+    int min = *(std::min_element(array_.begin(), array_.end()));
+    int max = *(std::max_element(array_.begin(), array_.end()));
 
-    for (unsigned long i = 0; i < array_.size(); ++i)
-    {
-        if (array_[i] > max)
-            max = array_[i];
-    }
     return max - min;
 }
 
