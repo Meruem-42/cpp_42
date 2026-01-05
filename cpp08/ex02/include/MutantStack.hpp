@@ -16,6 +16,9 @@ public:
     typedef typename Container::iterator iterator;
     iterator begin();
     iterator end();
+    typedef typename Container::const_iterator const_iterator;
+    const_iterator cbegin() const;
+    const_iterator cend() const;
 };
 
 #include "MutantStack.tpp"
