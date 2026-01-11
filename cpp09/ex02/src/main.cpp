@@ -1,6 +1,7 @@
 #include "../include/PmergeMe.hpp"
 
 
+
 int main(int ac, char **av)
 {
     if (ac < 2)
@@ -8,5 +9,6 @@ int main(int ac, char **av)
         std::cout << "Error" << std::endl;
         return (1);
     }
-    PmergeMe test(av);
+    PmergeMe test;
+    test.sort(av);
 }
