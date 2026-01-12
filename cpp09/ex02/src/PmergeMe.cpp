@@ -1,44 +1,13 @@
 #include "../include/PmergeMe.hpp"
 
 
-// PmergeMe::PmergeMe(char **av)
-// {
-//     int i = 1;
-//     while(av[i] != NULL)
-//     {
-//         std::string input = av[i];
-//         std::stringstream ss(input);
-//         std::string line = "";
-//         std::getline(ss, line);
-//         if (isdigit(line[0]))
-//         {
-//             vect_.push_back(atoi(line.c_str()));
-//             deq_.push_back(atoi(line.c_str()));
-//         }
-//         else
-//             throw ErrorPmergeMe();
-//         ++i;
-//     }
-// }
-
-
 PmergeMe::PmergeMe()
 {
+    int jb_init[] = {1,3,5,11,21,43,85,171,341,683,1365,2731};
 
-}
-
-
-void PmergeMe::print_containers_class()
-{
-    std::cout << "vector container :" << std::endl;
-    for (std::vector<int>::iterator it = vect_.begin(); it != vect_.end(); ++it)
+    for (size_t i = 0; i < 12; ++i)
     {
-        std::cout << "\t" << *it << std::endl;
-    }
-    std::cout << "dequeu container :" << std::endl;
-    for (std::deque<int>::iterator it = deq_.begin(); it != deq_.end(); ++it)
-    {
-        std::cout << "\t" << *it << std::endl;
+        jacobsthal_.push_back(jb_init[i]);
     }
 }
 
@@ -58,25 +27,27 @@ PmergeMe::~PmergeMe()
 {
 }
 
-const char *PmergeMe::ErrorPmergeMe::what() const throw()
+void PmergeMe::isSorted()
 {
-    return ("Error");
+    for(unsigned int i = 0; i < vect_.size() - 1; ++i)
+    {
+        if(vect_[i] > vect_[i + 1] || deq_[i] > deq_[i + 1])
+            throw SortingError();
+    }
 }
 
-void PmergeMe::binary_search(std::vector<std::pair<int, int> > labels)
+
+const char *PmergeMe::SortingError::what() const throw()
 {
-    std::vector<int> jacobsthal;
-    int jb_init[] = {1,3,5,11,21,43,85,171,341,683,1365,2731};
+    return ("deque or vect is badly sorted");
+}
 
-    for (size_t i = 0; i < sizeof(jb_init)/sizeof(jb_init[0]); ++i)
-    {
-        jacobsthal.push_back(jb_init[i]);
-    }
-
+void PmergeMe::binary_search_deq(std::deque<std::pair<int, int> > labels)
+{
 
     for (unsigned int i = 0; i < labels.size(); ++i)
     {
-        int jb_index = jacobsthal[i] - 1;   // 0-based
+        int jb_index = jacobsthal_[i] - 1;
         if (jb_index >= (int)labels.size())
             break;
 
@@ -84,39 +55,63 @@ void PmergeMe::binary_search(std::vector<std::pair<int, int> > labels)
         int loser = to_insert.second;
         int winner = to_insert.first;
 
-        // find winner position in vect_
-        std::vector<int>::iterator winner_it = std::find(vect_.begin(), vect_.end(), winner);
+        std::deque<int>::iterator winner_it = std::lower_bound(deq_.begin(), deq_.end(), winner);
 
-        // binary search only in [begin, winner_it)
-        std::vector<int>::iterator lo = vect_.begin();
-        std::vector<int>::iterator hi = winner_it;
+        std::deque<int>::iterator lo = deq_.begin();
+        std::deque<int>::iterator hi = winner_it;
 
         while (lo < hi)
         {
-            std::vector<int>::iterator mid = lo + (hi - lo) / 2;
+            std::deque<int>::iterator mid = lo + (hi - lo) / 2;
             if (*mid < loser)
                 lo = mid + 1;
             else
                 hi = mid;
         }
 
-        // insert loser at position lo
-        vect_.insert(lo, loser);
+        deq_.insert(lo, loser);
     }
-
     for (unsigned int i = 0; i < labels.size(); ++i)
     {
-        if(std::find(jacobsthal.begin(), jacobsthal.end(), i + 1) != jacobsthal.end())
+        if(std::find(jacobsthal_.begin(), jacobsthal_.end(), i + 1) != jacobsthal_.end())
             continue;
 
         std::pair<int,int> to_insert = labels[i];
         int loser = to_insert.second;
         int winner = to_insert.first;
 
-        // find winner position in vect_
-        std::vector<int>::iterator winner_it = std::find(vect_.begin(), vect_.end(), winner);
+        std::deque<int>::iterator winner_it = std::lower_bound(deq_.begin(), deq_.end(), winner);
 
-        // binary search only in [begin, winner_it)
+        std::deque<int>::iterator lo = deq_.begin();
+        std::deque<int>::iterator hi = winner_it;
+
+        while (lo < hi)
+        {
+            std::deque<int>::iterator mid = lo + (hi - lo) / 2;
+            if (*mid < loser)
+                lo = mid + 1;
+            else
+                hi = mid;
+        }
+        deq_.insert(lo, loser);
+    }
+}
+
+void PmergeMe::binary_search_vect(std::vector<std::pair<int, int> > labels)
+{
+
+    for (unsigned int i = 0; i < labels.size(); ++i)
+    {
+        int jb_index = jacobsthal_[i] - 1;
+        if (jb_index >= (int)labels.size())
+            break;
+
+        std::pair<int,int> to_insert = labels[jb_index];
+        int loser = to_insert.second;
+        int winner = to_insert.first;
+
+        std::vector<int>::iterator winner_it = std::lower_bound(vect_.begin(), vect_.end(), winner);
+
         std::vector<int>::iterator lo = vect_.begin();
         std::vector<int>::iterator hi = winner_it;
 
@@ -129,10 +124,71 @@ void PmergeMe::binary_search(std::vector<std::pair<int, int> > labels)
                 hi = mid;
         }
 
-        // insert loser at position lo
+        vect_.insert(lo, loser);
+    }
+    for (unsigned int i = 0; i < labels.size(); ++i)
+    {
+        if(std::find(jacobsthal_.begin(), jacobsthal_.end(), i + 1) != jacobsthal_.end())
+            continue;
+
+        std::pair<int,int> to_insert = labels[i];
+        int loser = to_insert.second;
+        int winner = to_insert.first;
+
+        std::vector<int>::iterator winner_it = std::lower_bound(vect_.begin(), vect_.end(), winner);
+
+        std::vector<int>::iterator lo = vect_.begin();
+        std::vector<int>::iterator hi = winner_it;
+
+        while (lo < hi)
+        {
+            std::vector<int>::iterator mid = lo + (hi - lo) / 2;
+            if (*mid < loser)
+                lo = mid + 1;
+            else
+                hi = mid;
+        }
         vect_.insert(lo, loser);
     }
 }
+
+void PmergeMe::sortDeque(std::deque<int> &to_sort)
+{
+    if(to_sort.size() < 2)
+    {
+        deq_.push_back(to_sort[0]);
+        return ;
+    }
+    std::deque<std::pair<int, int> > labels;
+    std::deque<int> winners;
+
+    for (std::deque<int>::iterator it = to_sort.begin(); it != to_sort.end(); )
+    {
+        if (it + 1 != to_sort.end())
+        {
+            int a = *it;
+            int b = *(it + 1);
+            if (a < b)
+            {
+                labels.push_back(std::make_pair(b, a));
+                winners.push_back(b);
+            }
+            else
+            {
+                labels.push_back(std::make_pair(a, b));
+                winners.push_back(a);
+            }
+            it += 2;
+        }
+        else
+        {
+            winners.push_back(*it);
+            ++it;
+        }
+    }
+    sortDeque(winners);
+    binary_search_deq(labels);
+} 
 
 void PmergeMe::sortVector(std::vector<int> &to_sort)
 {
@@ -169,30 +225,72 @@ void PmergeMe::sortVector(std::vector<int> &to_sort)
         }
     }
     sortVector(winners);
-    binary_search(labels);
-    print_containers_class();
+    binary_search_vect(labels);
 } 
 
 void PmergeMe::sort(char **av)
 {
     std::vector<int> vect_input;
+    std::deque<int> deq_input;
+    
 
     int i = 1;
+    std::clock_t start_time_datamg = std::clock();
     while(av[i] != NULL)
     {
         std::string input = av[i];
         std::stringstream ss(input);
         std::string line = "";
         std::getline(ss, line);
-        if (isdigit(line[0]))
+        if (is_num(line))
         {
             vect_input.push_back(atoi(line.c_str()));
+            deq_input.push_back(atoi(line.c_str()));
         }
-        // else
-        //     return (NULL);
+        else
+        {
+            std::cout << "Error" << std::endl;
+            return;
+        }
         ++i;
     }    
+    std::clock_t end_time_datamg = std::clock();
+    std::clock_t start_time_vect = std::clock();
     sortVector(vect_input);
+    std::clock_t end_time_vect = std::clock();
+    std::clock_t start_time_deq = std::clock();
+    sortDeque(deq_input);
+    std::clock_t end_time_deq = std::clock();
+    double datamg_time_ms = double(end_time_datamg - start_time_datamg) * 1000.0 / CLOCKS_PER_SEC;
+    double vect_time_ms = double(end_time_vect - start_time_vect) * 1000.0 / CLOCKS_PER_SEC;
+    double deq_time_ms = double(end_time_deq - start_time_deq) * 1000.0 / CLOCKS_PER_SEC;
+    std::cout << "Before : ";
+    for(unsigned int i = 0; i < 4 && i <vect_input.size(); ++i)
+        std::cout << vect_input[i] << " ";
+    std::cout << "[...]" << std::endl;
+    std::cout << "After : ";
+    for(unsigned int i = 0; i < 30 && i < vect_.size(); ++i)
+        std::cout << vect_[i] << " ";
+    std::cout << "[...]" << std::endl;
+    std::cout << "Time to process a range of 3000 elements with std::[..] : " << datamg_time_ms + vect_time_ms << " ms\n";
+    std::cout << "Time to process a range of 3000 elements with std::[..] : " << datamg_time_ms + deq_time_ms << " ms\n";
+    isSorted();
+}
+
+
+bool is_num(const std::string& str)
+{
+    for(unsigned int i = 0; i < str.size(); ++i)
+    {
+        if(!isdigit(str[i]))
+            return false;
+    }
+    std::stringstream ss(str);
+    int x;
+    ss >> x;
+    if (ss.fail() || x < 0)
+        return false;
+    return true;
 }
 
 

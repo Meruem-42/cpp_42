@@ -7,16 +7,18 @@
 #include <iostream>
 #include <sstream>
 #include <cmath>
+#include <ctime>
 
 class PmergeMe
 {
 private:
     std::vector<int> vect_;
     std::deque<int>  deq_;
+    std::vector<int> jacobsthal_;
 
 
     void sortVector(std::vector<int> &winners);
-    void sortDeque();
+    void sortDeque(std::deque<int> &winners);
 
 public:
     PmergeMe();
@@ -25,13 +27,14 @@ public:
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
 
-    class ErrorPmergeMe : public std::exception
+    class SortingError : public std::exception
     {
     public :
         const char *what() const throw();
     };
-    void print_containers_class();
-    void binary_search(std::vector<std::pair<int, int> > labels);
+    void binary_search_vect(std::vector<std::pair<int, int> > labels);
+    void binary_search_deq(std::deque<std::pair<int, int> > labels);
+    void isSorted();
     void sort(char **av);
 };
 
@@ -46,5 +49,8 @@ void print_container(const C& container)
         std::cout << "\t" << *it << std::endl;
     }
 }
+
+bool is_num(const std::string& str);
+
 
 #endif
