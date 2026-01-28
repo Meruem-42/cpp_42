@@ -77,9 +77,9 @@ bool verify_line(const std::string& line)
 bool parse_input(BitcoinExchange test, const char* file_name)
 {
     std::ifstream file(file_name);
-    // if (!file.is_open()) {
-    //     throw std::runtime_error("Error: could not open file.");
-    // }
+    if (!file.is_open()) {
+        return 0;
+    }
     std::string line;
     std::getline(file, line);
     if (!verify_header(line))
@@ -115,11 +115,13 @@ bool parse_input(BitcoinExchange test, const char* file_name)
 
 int main(int ac, char **av)
 {
-    (void)ac;
-    (void)av;
+    if(ac != 2)
+    {
+        std::cout << "Error" << std::endl;
+        return 1;
+    }
     BitcoinExchange test("./data.csv");
-    Date date("2022-2-11");
-    parse_input(test, av[1]);
-    // std::cout << test.search_value(date) << std::endl;
-    // std::cout << date.to_string() << std::endl;
+    
+    if (parse_input(test, av[1]) == 0)
+        std::cout << "Error" << std::endl;
 }

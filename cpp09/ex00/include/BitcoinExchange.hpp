@@ -14,7 +14,12 @@ private :
     int month_;
     int day_;
 public :
+    Date();
     Date(std::string date);
+    Date(const Date& other);
+    Date &operator=(const Date& other);
+    ~Date();
+
     bool operator<(const Date& other) const;
     std::string to_string() const;
     int getYear();
@@ -22,7 +27,6 @@ public :
     int getDay();
 };
 
-std::ostream &operator<<(std::ostream &stream, const Date &date);
 Date getDate(std::string line);
 float getNumber(std::string line);
 
@@ -32,9 +36,12 @@ class BitcoinExchange
 private:
     std::map<Date, float> mapping_;
 public:
-    // BitcoinExchange();
+    BitcoinExchange();
     BitcoinExchange(const char* file_name);
-    // ~BitcoinExchange();
+    BitcoinExchange(const BitcoinExchange &other);
+    BitcoinExchange &operator=(const BitcoinExchange &other);
+    ~BitcoinExchange();
+    
     float search_value(Date key);
 };
 
