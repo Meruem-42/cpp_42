@@ -35,6 +35,31 @@ Date::Date(std::string date)
     day_ =  toInt(date.substr(start, pos - start));
 }
 
+Date::Date()
+{
+    year_ = 0;
+    month_ = 0;
+    day_ = 0;
+}
+
+Date::Date(const Date& other)
+    : year_(other.year_), month_(other.month_), day_(other.day_)
+{
+}
+
+Date &Date::operator=(const Date& other)
+{
+    this->year_ = other.year_;
+    this->month_ = other.month_;
+    this->day_ = other.day_;
+    return (*this);
+}
+
+Date::~Date()
+{
+}
+
+
 
 bool Date::operator<(const Date& other) const
 {
@@ -76,12 +101,6 @@ int Date::getDay()
 }
 
 
-// void check_and_map_line(std::string line)
-// {
-
-//     // mapping_[get_date_key(line)];
-// }
-
 Date getDate(std::string line)
 {
     return Date(line);
@@ -92,6 +111,9 @@ float getNumber(std::string line)
     return (toFloat(line));
 }
 
+BitcoinExchange::BitcoinExchange()
+{
+}
 
 BitcoinExchange::BitcoinExchange(const char* file_name)
 {
@@ -125,6 +147,22 @@ BitcoinExchange::BitcoinExchange(const char* file_name)
     //     std::cout << key.to_string() << " -> " << value << '\n';
     // }
 }
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+{
+    this->mapping_.insert(other.mapping_.begin(), other.mapping_.end());
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
+{
+    mapping_.insert(other.mapping_.begin(), other.mapping_.end());
+    return (*this);
+}
+
+BitcoinExchange::~BitcoinExchange()
+{
+}
+
 
 float BitcoinExchange::search_value(Date key)
 {
