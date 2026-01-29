@@ -5,7 +5,6 @@ bool is_bisextile(int year)
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
-// bool check_date_for_db
 bool is_out_of_month_day(Date date)
 {
     int year = date.getYear();
@@ -14,9 +13,9 @@ bool is_out_of_month_day(Date date)
     if (month == 2)
     {
         if(is_bisextile(year))
-            return year > 29;
+            return day > 29;
         else
-            return year > 28;
+            return day > 28;
     }
     else if(month == 4 || month == 6 || month == 9 || month == 11)
         return day > 30;
@@ -39,6 +38,23 @@ bool check_possible_date(Date date)
     return true;
 }
 
+bool isnumber(const std::string& line)
+{
+    int count_dot = 0;
+    for (size_t i = 0; i < line.length(); ++i)
+    {
+        if (!isdigit(line[i])) return false;
+        if(line[i + 1] == '.')
+        {
+            count_dot++;
+            ++i;
+        }
+        if(count_dot > 1)
+            return false;
+    }
+    return true;
+}
+
 bool verify_header(std::string line)
 {
     return line == "date | value";
@@ -46,29 +62,35 @@ bool verify_header(std::string line)
 
 bool verify_line(const std::string& line)
 {
-    std::string::size_type sep = line.find(" | ");
-    if (sep == std::string::npos) return false;
+    size_t sep = line.find(" | ");
+    if (sep == std::string::npos) 
+        return false;
 
     std::string date = line.substr(0, sep);
     std::string value = line.substr(sep + 3);
 
     if (value.empty()) return false;
+    if (!isnumber(value)) return false;
 
-    // Split date into parts by '-'
     std::istringstream dateStream(date);
     std::string yearStr, monthStr, dayStr;
 
-    if (!std::getline(dateStream, yearStr, '-')) return false;
-    if (!std::getline(dateStream, monthStr, '-')) return false;
-    if (!std::getline(dateStream, dayStr, '|')) return false;
-    if (yearStr.empty() || monthStr.empty() || dayStr.empty()) return false;
+    if (!std::getline(dateStream, yearStr, '-')) 
+        return false;
+    if (!std::getline(dateStream, monthStr, '-')) 
+        return false;
+    if (!std::getline(dateStream, dayStr, '|')) 
+        return false;
+    if (yearStr.empty() || monthStr.empty() || dayStr.empty()) 
+        return false;
 
-    for (int i = 0; i < 4; ++i)
+    for (size_t i = 0; i < yearStr.length(); ++i)
         if (!isdigit(yearStr[i])) return false;
-    for (std::string::size_type i = 0; i < monthStr.length(); ++i)
+    for (size_t i = 0; i < monthStr.length(); ++i)
         if (!isdigit(monthStr[i])) return false;
-    for (std::string::size_type i = 0; i < dayStr.length(); ++i)
+    for (size_t i = 0; i < dayStr.length(); ++i)
         if (!isdigit(dayStr[i])) return false;
+
 
     return true;
 }
@@ -77,9 +99,9 @@ bool verify_line(const std::string& line)
 bool parse_input(BitcoinExchange test, const char* file_name)
 {
     std::ifstream file(file_name);
-    if (!file.is_open()) {
+    if (!file.is_open())
         return 0;
-    }
+
     std::string line;
     std::getline(file, line);
     if (!verify_header(line))
@@ -117,11 +139,17 @@ int main(int ac, char **av)
 {
     if(ac != 2)
     {
-        std::cout << "Error" << std::endl;
+        std::cerr << "Error" << std::endl;
         return 1;
     }
-    BitcoinExchange test("./data.csv");
+    std::ifstream file("./data.csv");
+    if (!file.is_open())
+    {
+        std::cerr << "Error" << std::endl;
+        return 1;
+    }
     
+    BitcoinExchange test("./data.csv");
     if (parse_input(test, av[1]) == 0)
-        std::cout << "Error" << std::endl;
+        std::cerr << "Error" << std::endl;
 }
