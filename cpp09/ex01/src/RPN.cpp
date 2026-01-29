@@ -40,7 +40,9 @@ void RPN::calculate(char operation)
 {
     if (stack_.size() < 2)
         throw ErrorRPN();
-    int num2 = stack_.top(); 
+    int num2 = stack_.top();
+    if (num2 > 9)
+        throw ErrorRPN();
     stack_.pop();
     int num1 = stack_.top();
     stack_.pop();

@@ -22,7 +22,7 @@ public :
     int top();
     int get_final_result();
     void calculate(char operation);
-    // void get_result();
+    
     class ErrorRPN : public std::exception
     {
     public :
