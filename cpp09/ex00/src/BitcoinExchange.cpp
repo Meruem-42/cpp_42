@@ -21,8 +21,7 @@ Date::Date(std::string date)
 {
     size_t pos;
     size_t start = 0;
-    // if(pos = date.find("-", start) != std::string::npos)
-    //     exception 
+
     pos = date.find("-", start);
     year_ =  toInt(date.substr(start, pos - start));
     start = pos + 1;
@@ -71,7 +70,6 @@ bool Date::operator<(const Date& other) const
 }
 
 
-
 std::string Date::to_string() const
 {
     std::stringstream ss;
@@ -118,34 +116,20 @@ BitcoinExchange::BitcoinExchange()
 BitcoinExchange::BitcoinExchange(const char* file_name)
 {
     std::ifstream file(file_name);
-    // if (!file.is_open()) {
-    // throw std::runtime_error("Error: could not open file.");
-    // }
+
     std::string line;
     std::getline(file, line);
-    // verify_header(line);
     while(std::getline(file, line))
     {
         std::stringstream ss(line);
         std::string item;
         std::getline(ss, item, ',');
         Date date = getDate(item);
-        // std::cout << date.to_string();
         std::getline(ss, item);
         float number = getNumber(item);
-        // std::cout << " | " << number << std::endl;
         mapping_[date] = number;
 
     }
-    // for (std::map<Date, float>::const_iterator it = mapping_.begin();
-    //     it != mapping_.end();
-    //     ++it)
-    // {
-    //     const Date& key = it->first;
-    //     float value = it->second;
-
-    //     std::cout << key.to_string() << " -> " << value << '\n';
-    // }
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
