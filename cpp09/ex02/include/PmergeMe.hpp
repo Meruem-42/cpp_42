@@ -35,10 +35,9 @@ public:
     void binary_search_vect(std::vector<std::pair<int, int> > labels);
     void binary_search_deq(std::deque<std::pair<int, int> > labels);
     void isSorted();
+    void print_recap(std::vector<int> vect_input, double datamg_time_ms, double vect_time_ms, double deq_time_ms);
     void sort(char **av);
 };
-
-void print_containers(std::vector<int> &vect, std::deque<int> &deq);
 
 template <typename C>
 void print_container(const C& container)

@@ -264,17 +264,27 @@ void PmergeMe::sort(char **av)
     double datamg_time_ms = double(end_time_datamg - start_time_datamg) * 1000.0 / CLOCKS_PER_SEC;
     double vect_time_ms = double(end_time_vect - start_time_vect) * 1000.0 / CLOCKS_PER_SEC;
     double deq_time_ms = double(end_time_deq - start_time_deq) * 1000.0 / CLOCKS_PER_SEC;
-    std::cout << "Before : ";
-    for(unsigned int i = 0; i < 4 && i <vect_input.size(); ++i)
-        std::cout << vect_input[i] << " ";
-    std::cout << "[...]" << std::endl;
-    std::cout << "After : ";
-    for(unsigned int i = 0; i < 30 && i < vect_.size(); ++i)
-        std::cout << vect_[i] << " ";
-    std::cout << "[...]" << std::endl;
-    std::cout << "Time to process a range of 3000 elements with std::[..] : " << datamg_time_ms + vect_time_ms << " ms\n";
-    std::cout << "Time to process a range of 3000 elements with std::[..] : " << datamg_time_ms + deq_time_ms << " ms\n";
+    print_recap(vect_input, datamg_time_ms, vect_time_ms, deq_time_ms);
     isSorted();
+}
+
+void PmergeMe::print_recap(std::vector<int> vect_input, double datamg_time_ms, double vect_time_ms, double deq_time_ms)
+{
+    std::size_t show_limit = std::min(static_cast<std::size_t>(5), vect_input.size());
+    std::cout << "Before : ";
+    for(std::size_t i = 0; i < show_limit; ++i)
+        std::cout << vect_input[i] << " ";
+    if(show_limit < vect_input.size())
+        std::cout << "[...]";
+    std::cout << std::endl;
+    std::cout << "After : ";
+    for(std::size_t i = 0; i < show_limit; ++i)
+        std::cout << vect_[i] << " ";
+    if(show_limit < vect_input.size())
+        std::cout << "[...]";
+    std::cout << std::endl;
+    std::cout << "Time to process a range of " << vect_.size() << " elements with std::vector : " << datamg_time_ms + vect_time_ms << " ms\n";
+    std::cout << "Time to process a range of " << deq_.size() << " elements with std::deque : " << datamg_time_ms + deq_time_ms << " ms\n";
 }
 
 
