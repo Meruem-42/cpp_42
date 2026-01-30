@@ -1,6 +1,6 @@
 CXX = c++
 
-CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 NAME = RPN
 
@@ -17,10 +17,10 @@ OBJ = $(SRC:src/%.c=$(OBJ_DIR)%.o)
 
 $(OBJ_DIR)%.o : src/%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CXX) $(CFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ)
-	@$(CXX) $(CFLAGS) -o $@ $^
+	@$(CXX) $(CXXFLAGS) -o $@ $^
 	@echo "$(GREEN)Compilation successful ! ✅ $(RESET)"
 
 all : $(NAME)
