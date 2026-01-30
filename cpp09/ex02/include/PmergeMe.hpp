@@ -22,7 +22,6 @@ private:
 
 public:
     PmergeMe();
-    // PmergeMe(char **av);
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
