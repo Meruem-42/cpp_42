@@ -1,7 +1,5 @@
 #include "../include/PmergeMe.hpp"
 
-
-
 int main(int ac, char **av)
 {
     if (ac < 2 || ac > 5000)
