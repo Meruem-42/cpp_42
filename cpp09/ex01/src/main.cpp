@@ -12,10 +12,12 @@ bool parse_input(RPN stack, std::string input)
 
     while (std::getline(ss, line, ' '))
     {
-        if (isdigit(line[0]))
+        if (isdigit(line[0]) && line.length() == 1)
             stack.push(atoi(line.c_str()));
-        else
+        else if (line == "+" || line == "-" || line == "*" || line == "/")
             stack.calculate(line[0]);
+        else
+            throw RPN::ErrorRPN();
     }
     std::cout << stack.get_final_result() << std::endl;
     return true;
