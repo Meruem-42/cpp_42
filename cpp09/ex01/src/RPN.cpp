@@ -38,6 +38,7 @@ int RPN::get_final_result()
 
 void RPN::calculate(char operation)
 {
+
     if (stack_.size() < 2)
         throw ErrorRPN();
     int num2 = stack_.top();
@@ -56,6 +57,8 @@ void RPN::calculate(char operation)
             result = num1 * num2;
             break;
         case '/' :
+            if(num2 == 0)
+                throw ErrorRPN();
             result = num1 / num2;
             break;                        
         case '-' :
