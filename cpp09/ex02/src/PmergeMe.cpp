@@ -53,21 +53,8 @@ void PmergeMe::binary_search_deq(std::deque<std::pair<int, int> > labels)
 
         std::pair<int,int> to_insert = labels[jb_index];
         int loser = to_insert.second;
-        int winner = to_insert.first;
 
-        std::deque<int>::iterator winner_it = std::lower_bound(deq_.begin(), deq_.end(), winner);
-
-        std::deque<int>::iterator lo = deq_.begin();
-        std::deque<int>::iterator hi = winner_it;
-
-        while (lo < hi)
-        {
-            std::deque<int>::iterator mid = lo + (hi - lo) / 2;
-            if (*mid < loser)
-                lo = mid + 1;
-            else
-                hi = mid;
-        }
+        std::deque<int>::iterator lo = std::lower_bound(deq_.begin(), deq_.end(), loser);
 
         deq_.insert(lo, loser);
     }
@@ -78,21 +65,9 @@ void PmergeMe::binary_search_deq(std::deque<std::pair<int, int> > labels)
 
         std::pair<int,int> to_insert = labels[i];
         int loser = to_insert.second;
-        int winner = to_insert.first;
 
-        std::deque<int>::iterator winner_it = std::lower_bound(deq_.begin(), deq_.end(), winner);
+        std::deque<int>::iterator lo = std::lower_bound(deq_.begin(), deq_.end(), loser);
 
-        std::deque<int>::iterator lo = deq_.begin();
-        std::deque<int>::iterator hi = winner_it;
-
-        while (lo < hi)
-        {
-            std::deque<int>::iterator mid = lo + (hi - lo) / 2;
-            if (*mid < loser)
-                lo = mid + 1;
-            else
-                hi = mid;
-        }
         deq_.insert(lo, loser);
     }
 }
@@ -108,22 +83,8 @@ void PmergeMe::binary_search_vect(std::vector<std::pair<int, int> > labels)
 
         std::pair<int,int> to_insert = labels[jb_index];
         int loser = to_insert.second;
-        int winner = to_insert.first;
 
-        std::vector<int>::iterator winner_it = std::lower_bound(vect_.begin(), vect_.end(), winner);
-
-        std::vector<int>::iterator lo = vect_.begin();
-        std::vector<int>::iterator hi = winner_it;
-
-        while (lo < hi)
-        {
-            std::vector<int>::iterator mid = lo + (hi - lo) / 2;
-            if (*mid < loser)
-                lo = mid + 1;
-            else
-                hi = mid;
-        }
-
+        std::vector<int>::iterator lo = std::lower_bound(vect_.begin(), vect_.end(), loser);
         vect_.insert(lo, loser);
     }
     for (unsigned int i = 0; i < labels.size(); ++i)
@@ -133,21 +94,8 @@ void PmergeMe::binary_search_vect(std::vector<std::pair<int, int> > labels)
 
         std::pair<int,int> to_insert = labels[i];
         int loser = to_insert.second;
-        int winner = to_insert.first;
+        std::vector<int>::iterator lo = std::lower_bound(vect_.begin(), vect_.end(), loser);
 
-        std::vector<int>::iterator winner_it = std::lower_bound(vect_.begin(), vect_.end(), winner);
-
-        std::vector<int>::iterator lo = vect_.begin();
-        std::vector<int>::iterator hi = winner_it;
-
-        while (lo < hi)
-        {
-            std::vector<int>::iterator mid = lo + (hi - lo) / 2;
-            if (*mid < loser)
-                lo = mid + 1;
-            else
-                hi = mid;
-        }
         vect_.insert(lo, loser);
     }
 }
@@ -261,9 +209,9 @@ void PmergeMe::sort(char **av)
     std::clock_t start_time_deq = std::clock();
     sortDeque(deq_input);
     std::clock_t end_time_deq = std::clock();
-    double datamg_time_ms = double(end_time_datamg - start_time_datamg) * 1000.0 / CLOCKS_PER_SEC;
-    double vect_time_ms = double(end_time_vect - start_time_vect) * 1000.0 / CLOCKS_PER_SEC;
-    double deq_time_ms = double(end_time_deq - start_time_deq) * 1000.0 / CLOCKS_PER_SEC;
+    double datamg_time_ms = static_cast<double>(end_time_datamg - start_time_datamg) * 1000.0 / CLOCKS_PER_SEC;
+    double vect_time_ms = static_cast<double>(end_time_vect - start_time_vect) * 1000.0 / CLOCKS_PER_SEC;
+    double deq_time_ms = static_cast<double>(end_time_deq - start_time_deq) * 1000.0 / CLOCKS_PER_SEC;
     print_recap(vect_input, datamg_time_ms, vect_time_ms, deq_time_ms);
     isSorted();
 }

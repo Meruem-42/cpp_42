@@ -128,7 +128,6 @@ BitcoinExchange::BitcoinExchange(const char* file_name)
         std::getline(ss, item);
         float number = getNumber(item);
         mapping_[date] = number;
-
     }
 }
 
