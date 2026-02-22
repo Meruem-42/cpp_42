@@ -25,8 +25,12 @@ bool parse_input(RPN stack, std::string input)
 
 int main(int ac, char **av)
 {
-    (void)ac;
     RPN stack;
+    if (ac != 2)
+    {
+        std::cerr << "Error" << '\n';
+        return 1;
+    }  
     try
     {
         parse_input(stack, av[1]);
